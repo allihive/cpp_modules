@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:50:02 by alli              #+#    #+#             */
-/*   Updated: 2024/10/16 15:56:17 by alli             ###   ########.fr       */
+/*   Updated: 2024/10/17 14:47:05 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	Phonebook::addContact()
 	static int count;
 	int	index = count % 8;
 	contacts[index].setIndex(index);
+	contacts[index].clearContact();
 	if (contacts[index].addNewContact(index) == true)
 	{
 		contactCount++;
@@ -55,6 +56,8 @@ bool	Phonebook::displayContact()
 	if (contactCount > 0)
 	{
 		createTable();
+		if (contactCount > 8)
+			contactCount = 8;
 		for (int i = 0; i < contactCount; i++)
 		{
 			std::cout << std::endl << std::right
@@ -83,24 +86,29 @@ void	Phonebook::searchIndex()
 			std::cout << "EOF signal received in search index byyeeee" << std::endl;
 			exit (0);
 		}
-		if (num >= 0 && num < 7)
+		if (num >= 0 && num <= 7)
 		{
-			if (contactCount < num)
+			if (contactCount - 1 < num)
+			{
 				std::cout << "The index you put does not exist " << std::endl;
+				break ;
+			}
 			else
 			{
 				contacts[num].showContact();
 				break ;
 			}
-		}}
+		}
+		else if (num > 7 || num < 0)
+		{
+			std::cout << "Please input a valid index between 0 - 7" << std::endl;
+			break ;
+		}
+		}
 		catch (const std::invalid_argument&)
 		{
 			std::cout << "Please input a valid argument" << std::endl;
 			break ;
-		}
-		catch (std::out_of_range)
-		{
-			std::cout << "Your input is out of range, returning back to the Phonebook" << std::endl;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:23:23 by alli              #+#    #+#             */
-/*   Updated: 2024/10/16 15:23:59 by alli             ###   ########.fr       */
+/*   Updated: 2024/10/17 14:41:01 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 
 class Contact {
@@ -26,7 +27,8 @@ class Contact {
 		std::string darkestSecret;
 		int	index;
 	public:
-		
+		Contact();
+		~Contact();
 		std::string	getFirstName();
 		std::string	getLastName();
 		std::string	getNickname();
@@ -35,6 +37,7 @@ class Contact {
 		void	setIndex(int index);
 		bool	addNewContact(int index);
 		void	showContact();
+		void	clearContact();
 	};
 
 #endif

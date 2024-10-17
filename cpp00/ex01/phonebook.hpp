@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:49:59 by alli              #+#    #+#             */
-/*   Updated: 2024/10/16 15:40:23 by alli             ###   ########.fr       */
+/*   Updated: 2024/10/17 09:28:57 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Phonebook {
 	private:
 		Contact	contacts[8];
 		int		contactCount;
+		int		lastContact;
 	public:
 		Phonebook();
 		~Phonebook(); // ask yunchia why

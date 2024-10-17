@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:59:44 by alli              #+#    #+#             */
-/*   Updated: 2024/10/16 15:37:20 by alli             ###   ########.fr       */
+/*   Updated: 2024/10/17 14:18:19 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int main(int argc, char **argv)
 		std::cout << "Invalid amount of arguments";
 	while (1)
 	{
-		
-		if (cmd.empty())
-			std::cout << "Please write a command: ADD, SEARCH, or EXIT > " << std::endl;
+		std::cout << "Please write a command: ADD, SEARCH, or EXIT > " << std::endl;
 		if (!(std::getline(std::cin, cmd)))
 			exit_message();
 		else if (cmd == "ADD")
