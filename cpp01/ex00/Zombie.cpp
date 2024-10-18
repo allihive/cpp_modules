@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 09:30:49 by alli              #+#    #+#             */
-/*   Updated: 2024/10/18 10:29:58 by alli             ###   ########.fr       */
+/*   Created: 2024/10/18 12:38:11 by alli              #+#    #+#             */
+/*   Updated: 2024/10/18 14:46:33 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "Zombie.hpp"
 
-int main(int argc, char **argv)
+void	Zombie::announce()
 {
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	for (int i = 1; i < argc; i++)
-	{
-		std::string str = argv[i];
-		for (unsigned long j = 0; j < str.length(); j++)
-		{
-			if (islower(str[j]))
-			{
-				std::cout << toupper(str[j]);
-			}
-			else
-				std::cout << str[j];
-		}
-	}
-	std::cout << std::endl;
-	return (0);
+	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+Zombie *newZombie(std::string name)
+{
+	if (name.empty())
+		std::cout << "Please name this zombie" << std::endl;
+	return (new Zombie(name));
 }
