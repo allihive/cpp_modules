@@ -1,9 +1,9 @@
-NAME = Zombie
+NAME = ZombieHorde
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SRCS = main.cpp zombie.cpp zombieHorde.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -23,4 +23,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean remake
+.PHONY: all clean fclean re

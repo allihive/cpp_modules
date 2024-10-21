@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 12:38:05 by alli              #+#    #+#             */
-/*   Updated: 2024/10/21 10:04:22 by alli             ###   ########.fr       */
+/*   Created: 2024/10/21 10:53:09 by alli              #+#    #+#             */
+/*   Updated: 2024/10/21 14:27:54 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie {
-	private: 
-	std::string name;
+int main()
+{
+	int zombieCount = 10;
 	
-	public:
-	Zombie(std::string name);
-	~Zombie();
-	
-	void	announce(void);
-	void	setName(std::string name);
-};
-
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
-
-#endif
+	Zombie* newZomHor = zombieHorde(zombieCount, "Bob");
+	for (int i = 0; i < zombieCount; i++)
+	{
+		std::cout << "Zombie " << i << ": " << std::flush;
+		newZomHor[i].announce();
+	}
+	for (int i = zombieCount - 1; i >= 0; i--)
+	{
+		newZomHor[i].~Zombie();
+	}
+	delete[] newZomHor;
+	return 0;
+}
