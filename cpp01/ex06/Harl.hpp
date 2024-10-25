@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:53:09 by alli              #+#    #+#             */
-/*   Updated: 2024/10/21 14:53:27 by alli             ###   ########.fr       */
+/*   Created: 2024/10/24 10:25:21 by alli              #+#    #+#             */
+/*   Updated: 2024/10/24 15:35:13 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
 
-int main()
-{
-	int zombieCount = 10;
-	
-	Zombie* newZomHor = zombieHorde(zombieCount, "Bob");
-	for (int i = 0; i < zombieCount; i++)
-	{
-		std::cout << "Zombie " << i << ": " << std::flush;
-		newZomHor[i].announce();
-	}
-	delete[] newZomHor;
-	return 0;
-}
+#include <iostream>
+#include <string>
+
+class Harl {
+	private:
+		void debug ();
+		void info ();
+		void warning ();
+		void error();
+	public:
+		void complain( std::string level );
+};
+
+typedef void (Harl::*c_func)(void);
+
+#endif

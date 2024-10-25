@@ -5,23 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:53:09 by alli              #+#    #+#             */
-/*   Updated: 2024/10/21 14:53:27 by alli             ###   ########.fr       */
+/*   Created: 2024/10/24 10:25:19 by alli              #+#    #+#             */
+/*   Updated: 2024/10/24 15:55:35 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-	int zombieCount = 10;
+	Harl harl;
+	std::string line;
 	
-	Zombie* newZomHor = zombieHorde(zombieCount, "Bob");
-	for (int i = 0; i < zombieCount; i++)
+	if (argc != 2)
 	{
-		std::cout << "Zombie " << i << ": " << std::flush;
-		newZomHor[i].announce();
+		std::cout << "Please write level: DEBUG or INFO or WARNING or ERROR" << std::endl;
+		return (1);
 	}
-	delete[] newZomHor;
-	return 0;
+	line = argv[1];
+	if (line.empty())
+	{
+		std::cout << "Empty input try again" << std::endl;
+		return (1);
+	}
+	else
+	{
+		harl.complain(line);
+		return (0);
+	}
 }

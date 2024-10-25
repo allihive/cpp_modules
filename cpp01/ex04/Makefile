@@ -1,9 +1,9 @@
-NAME = ZombieHorde
+NAME = sed
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

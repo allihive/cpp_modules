@@ -1,9 +1,9 @@
-NAME = ZombieHorde
+NAME = violence
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

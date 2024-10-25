@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:53:09 by alli              #+#    #+#             */
-/*   Updated: 2024/10/21 14:53:27 by alli             ###   ########.fr       */
+/*   Created: 2024/10/23 10:52:47 by alli              #+#    #+#             */
+/*   Updated: 2024/10/23 13:07:22 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanB.hpp"
 
-int main()
+HumanB::HumanB(std::string name) : name(name), weapon(nullptr) {}
+
+HumanB::~HumanB() {}
+
+void HumanB::setWeapon(Weapon &setWeapon)
 {
-	int zombieCount = 10;
-	
-	Zombie* newZomHor = zombieHorde(zombieCount, "Bob");
-	for (int i = 0; i < zombieCount; i++)
+	this->weapon = &setWeapon;
+}
+
+void HumanB::attack()
+{
+	if (!weapon || weapon->getType().empty())
 	{
-		std::cout << "Zombie " << i << ": " << std::flush;
-		newZomHor[i].announce();
+		std::cout << this->name << " has no weapon" << std::endl;
+		return ;
 	}
-	delete[] newZomHor;
-	return 0;
+	std::cout << this->name << " attacks with weapon " << this->weapon->getType() << std::endl;
 }

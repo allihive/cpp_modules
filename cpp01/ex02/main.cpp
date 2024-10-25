@@ -5,23 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 10:53:09 by alli              #+#    #+#             */
-/*   Updated: 2024/10/21 14:53:27 by alli             ###   ########.fr       */
+/*   Created: 2024/10/21 15:04:35 by alli              #+#    #+#             */
+/*   Updated: 2024/10/23 10:18:18 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include <string>
 
 int main()
 {
-	int zombieCount = 10;
-	
-	Zombie* newZomHor = zombieHorde(zombieCount, "Bob");
-	for (int i = 0; i < zombieCount; i++)
-	{
-		std::cout << "Zombie " << i << ": " << std::flush;
-		newZomHor[i].announce();
-	}
-	delete[] newZomHor;
-	return 0;
+	std::string str = "HI THIS IS BRIAN";
+	std::string* stringPTR = &str;
+	std::string& stringREF = str;
+
+	std::cout << "Memory address of str: " << &str << std::endl;
+	std::cout << "Memory address of stringPTR: " << stringPTR << std::endl;
+	std::cout << "Memory address of stringREF: " << &stringREF << std::endl;
+
+	std::cout << "Value of str: " << str << std::endl;
+	std::cout << "Value of stringPTR: " << *stringPTR << std::endl;
+	std::cout << "Value of stringREF: "<< stringREF << std::endl;
 }
