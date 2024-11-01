@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 15:57:35 by alli              #+#    #+#             */
-/*   Updated: 2024/10/30 15:50:59 by alli             ###   ########.fr       */
+/*   Created: 2024/10/30 15:59:09 by alli              #+#    #+#             */
+/*   Updated: 2024/10/31 13:12:51 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
+
 #include "ClapTrap.hpp"
+#include <iostream>
 
-int main()
+class ScavTrap : public ClapTrap
 {
-	ClapTrap	Fun("Fun");
-	ClapTrap	Scary("Scary");
-	ClapTrap	Unamused("Unamused");
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap& other);
+		~ScavTrap();
 
-	Fun.attack("Scary");
-	Scary.takeDamage(5);
-	Scary.beRepaired(3);
+		ScavTrap& operator=(const ScavTrap& other);
+		
+		void attack(const std::string& target) override;
+		void guardGate();
+};
 
-	Fun.attack("Scary");
-	Scary.takeDamage(10);
-	Scary.attack("Fun");
-
-	for (int i = 0; i < 10; i++)
-		Fun.attack("Unamused");
-	return (0);
-}
-
+#endif

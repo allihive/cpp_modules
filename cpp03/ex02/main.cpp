@@ -6,28 +6,50 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:57:35 by alli              #+#    #+#             */
-/*   Updated: 2024/10/30 15:50:59 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/01 10:28:17 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
+
+void	Claps()
+{
+	std::cout << "ClapTrap in the house.\n";
+	ClapTrap Clap("Clapping");
+
+	Clap.attack("Slap");
+	Clap.takeDamage(6);
+	Clap.beRepaired(9);
+}
+
+void	Scav()
+{
+	std::cout << "ScavTrap in the house.\n";
+	ScavTrap Savage("Savage");
+
+	Savage.attack("Package");
+	Savage.guardGate();
+}
+
+void	Frag()
+{
+	std::cout << "FragTrap in the house.\n";
+	FragTrap Fragment("Fragment");
+
+	Fragment.attack("Attachment");
+	Fragment.highFivesGuys();
+}
 
 int main()
 {
-	ClapTrap	Fun("Fun");
-	ClapTrap	Scary("Scary");
-	ClapTrap	Unamused("Unamused");
-
-	Fun.attack("Scary");
-	Scary.takeDamage(5);
-	Scary.beRepaired(3);
-
-	Fun.attack("Scary");
-	Scary.takeDamage(10);
-	Scary.attack("Fun");
-
-	for (int i = 0; i < 10; i++)
-		Fun.attack("Unamused");
+	Claps();
+	std::cout << std::endl;
+	Scav();
+	std::cout << std::endl;
+	Frag();
+	std::cout << std::endl;
+	
 	return (0);
 }
-

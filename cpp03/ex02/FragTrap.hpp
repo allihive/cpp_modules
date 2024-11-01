@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 15:57:35 by alli              #+#    #+#             */
-/*   Updated: 2024/10/30 15:50:59 by alli             ###   ########.fr       */
+/*   Created: 2024/10/31 15:28:04 by alli              #+#    #+#             */
+/*   Updated: 2024/11/01 12:27:50 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
+
 #include "ClapTrap.hpp"
 
-int main()
+class FragTrap : public ClapTrap
 {
-	ClapTrap	Fun("Fun");
-	ClapTrap	Scary("Scary");
-	ClapTrap	Unamused("Unamused");
+	public:
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap(const FragTrap& other);
+		~FragTrap();
 
-	Fun.attack("Scary");
-	Scary.takeDamage(5);
-	Scary.beRepaired(3);
+		FragTrap& operator=(const FragTrap& other);
+		
+		// void attack(const std::string& target) override;
+		void highFivesGuys();
+};
 
-	Fun.attack("Scary");
-	Scary.takeDamage(10);
-	Scary.attack("Fun");
-
-	for (int i = 0; i < 10; i++)
-		Fun.attack("Unamused");
-	return (0);
-}
-
+#endif

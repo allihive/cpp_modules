@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:01:55 by alli              #+#    #+#             */
-/*   Updated: 2024/10/29 15:51:38 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/01 11:37:14 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,13 @@ Fixed	&Fixed::operator++()
 Fixed	Fixed::operator--(int)
 {
 	Fixed tmp = *this;
-	this->_fixed = this->_fixed + 1;
+	this->_fixed = this->_fixed - 1;
 	return (tmp);
 }
 
 Fixed	&Fixed::operator--()
 {
-	this->_fixed = this->_fixed + 1;
+	this->_fixed = this->_fixed - 1;
 	return (*this);
 }
 

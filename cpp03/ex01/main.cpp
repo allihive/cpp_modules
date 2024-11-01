@@ -6,17 +6,17 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:57:35 by alli              #+#    #+#             */
-/*   Updated: 2024/10/30 15:50:59 by alli             ###   ########.fr       */
+/*   Updated: 2024/10/31 14:01:19 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-	ClapTrap	Fun("Fun");
-	ClapTrap	Scary("Scary");
-	ClapTrap	Unamused("Unamused");
+	ScavTrap	Fun("Fun");
+	ScavTrap	Scary("Scary");
+	ScavTrap	Unamused("Unamused");
 
 	Fun.attack("Scary");
 	Scary.takeDamage(5);
@@ -26,8 +26,6 @@ int main()
 	Scary.takeDamage(10);
 	Scary.attack("Fun");
 
-	for (int i = 0; i < 10; i++)
-		Fun.attack("Unamused");
+	Unamused.guardGate();
 	return (0);
 }
-
