@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 12:56:20 by alli              #+#    #+#             */
-/*   Updated: 2024/11/04 13:58:09 by alli             ###   ########.fr       */
+/*   Created: 2024/11/04 15:23:48 by alli              #+#    #+#             */
+/*   Updated: 2024/11/04 16:19:14 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "Cat.hpp"
 
-#include <iostream>
+Cat::Cat()
+{
+	std::cout << "Cat constructor called." << std::endl;
+}
 
-class Animal {
-	protected:
-		std::string type;
-	public:
-		Animal();
-		Animal(std::string type);
-		Animal(const Animal& other);
-		~Animal();
-		
-		Animal& operator=(const Animal& other);
-		std::string	getType()const;
-		virtual	void makeSound() const;
-		virtual ~Animal();
-};
+Cat::Cat(const Cat& other)
+{
+	std::cout << "Cat copy constructor" << std::endl;
+	*this = other;
+}
 
-#endif
+Cat& Cat::operator=(const Cat& other)
+{
+	if (this == &other)
+		return *this;
+	else
+		this->type = other.type;
+	return *this;
+}
+
+Cat::~Cat()
+{
+	std::cout << ""
+}
