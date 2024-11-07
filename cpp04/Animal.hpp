@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:56:20 by alli              #+#    #+#             */
-/*   Updated: 2024/11/04 13:58:09 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/07 11:43:57 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class Animal {
 		Animal();
 		Animal(std::string type);
 		Animal(const Animal& other);
-		~Animal();
 		
 		Animal& operator=(const Animal& other);
 		std::string	getType()const;

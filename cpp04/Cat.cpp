@@ -6,21 +6,21 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:23:48 by alli              #+#    #+#             */
-/*   Updated: 2024/11/04 16:19:14 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/06 16:17:07 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
+	type = "Cat";
 	std::cout << "Cat constructor called." << std::endl;
 }
 
-Cat::Cat(const Cat& other)
+Cat::Cat(const Cat& other) : Animal(other)
 {
-	std::cout << "Cat copy constructor" << std::endl;
-	*this = other;
+	std::cout << type << " copy constructor" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat& other)
@@ -32,7 +32,12 @@ Cat& Cat::operator=(const Cat& other)
 	return *this;
 }
 
+void Cat::makeSound() const 
+{
+	std::cout << type << " : meooooowwwww!" << std::endl;
+}
+
 Cat::~Cat()
 {
-	std::cout << ""
+	std::cout << type <<" destroyed." << std::endl;
 }

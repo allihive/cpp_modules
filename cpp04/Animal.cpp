@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:56:22 by alli              #+#    #+#             */
-/*   Updated: 2024/11/04 15:22:50 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/07 11:56:06 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void Animal::makeSound() const
 
 Animal::~Animal()
 {
-	std::cout << "Default Animal destructor" << std::endl;
+	std::cout << "Animal destroyed" << std::endl;
 }
 
 std::string Animal::getType() const
