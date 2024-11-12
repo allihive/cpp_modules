@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:23:48 by alli              #+#    #+#             */
-/*   Updated: 2024/11/08 12:00:31 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/07 15:03:06 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,13 @@
 
 Cat::Cat() : Animal()
 {
-	std::cout << "Default Cat constructor called." << std::endl;
-	brainz = new Brain();
-	if (brainz == nullptr)
-	{
-		std::cout << "No brain for cat was allocated. \n";	
-		return ;
-	}
 	type = "Cat";
+	std::cout << "Cat constructor called." << std::endl;
 }
 
 Cat::Cat(const Cat& other) : Animal(other)
 {
 	std::cout << type << " copy constructor" << std::endl;
-	brainz = new Brain();
-	if (brainz == nullptr)
-	{
-		std::cout << "No brain for cat was allocated. \n";
-		return ;
-	}
-	*this = other;
 }
 
 Cat& Cat::operator=(const Cat& other)
@@ -42,10 +29,7 @@ Cat& Cat::operator=(const Cat& other)
 	if (this == &other)
 		return *this;
 	else
-	{
-		Animal::operator=(other);
-		*brainz = *other.brainz;
-	}
+		this->type = other.type;
 	return *this;
 }
 
@@ -56,11 +40,5 @@ void Cat::makeSound() const
 
 Cat::~Cat()
 {
-	std::cout << type << " destroyed." << std::endl;
-	delete brainz;
-}
-
-Brain* Cat::getBrain()
-{
-	return (brainz);
+	std::cout << type <<" destroyed." << std::endl;
 }

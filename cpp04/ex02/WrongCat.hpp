@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:26:18 by alli              #+#    #+#             */
-/*   Updated: 2024/11/07 11:45:58 by alli             ###   ########.fr       */
+/*   Created: 2024/11/06 16:21:57 by alli              #+#    #+#             */
+/*   Updated: 2024/11/07 11:15:17 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-class Cat : public Animal{
-	public:
-		Cat();
-		Cat(const Cat& other);
-		~Cat()override;
-		
-		Cat& operator=(const Cat& other);
-		void	makeSound() const override;
+#include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal {
+	public: 
+		WrongCat();
+		WrongCat(const WrongCat& other);
+		WrongCat& operator=(const WrongCat& copy);
+		~WrongCat();
+
+		void	makeSound() const;
 };
+
+#endif

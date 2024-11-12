@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 13:28:44 by alli              #+#    #+#             */
-/*   Updated: 2024/11/06 16:06:49 by alli             ###   ########.fr       */
+/*   Created: 2024/11/04 13:26:18 by alli              #+#    #+#             */
+/*   Updated: 2024/11/07 14:38:12 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef CAT_HPP
+#define CAT_HPP
 
-int main( void ) {
-	Fixed a;
-	Fixed const b( Fixed( 5.00f ) * Fixed( 2 ) );
-	a.setRawBits(10);
-	std::cout << a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+#include "Animal.hpp"
+
+class Cat : public Animal{
+	public:
+		Cat();
+		Cat(const Cat& other);
+		~Cat()override;
+		
+		Cat& operator=(const Cat& other);
+		void	makeSound() const override;
+};
+
+#endif

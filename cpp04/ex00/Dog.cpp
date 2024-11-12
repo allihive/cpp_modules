@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 15:23:48 by alli              #+#    #+#             */
-/*   Updated: 2024/11/06 16:17:07 by alli             ###   ########.fr       */
+/*   Created: 2024/11/04 13:25:12 by alli              #+#    #+#             */
+/*   Updated: 2024/11/07 15:03:30 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-Cat::Cat() : Animal()
+Dog::Dog() : Animal()
 {
-	type = "Cat";
-	std::cout << "Cat constructor called." << std::endl;
+	type = "Dog";
+	std::cout << "Dog constructor called." << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Dog::Dog(const Dog& other) : Animal(other)
 {
 	std::cout << type << " copy constructor" << std::endl;
 }
-
-Cat& Cat::operator=(const Cat& other)
+Dog& Dog::operator=(const Dog& other)
 {
+	std::cout << "Dog copy assignment called." << std::endl;
 	if (this == &other)
-		return *this;
+		return (*this);
 	else
-		this->type = other.type;
-	return *this;
+		type = other.type;
+	return (*this);
 }
 
-void Cat::makeSound() const 
+void Dog::makeSound() const
 {
-	std::cout << type << " : meooooowwwww!" << std::endl;
+	std::cout << type << " : WOOF WOOF" << std::endl;
 }
 
-Cat::~Cat()
+Dog::~Dog()
 {
-	std::cout << type <<" destroyed." << std::endl;
+	std::cout << type << " destroyed." << std::endl;
 }

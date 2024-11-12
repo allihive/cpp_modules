@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:25:18 by alli              #+#    #+#             */
-/*   Updated: 2024/11/06 15:59:42 by alli             ###   ########.fr       */
+/*   Created: 2024/11/08 17:57:39 by alli              #+#    #+#             */
+/*   Updated: 2024/11/08 17:59:28 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef ICE_HPP
+#define ICE_HPP
 
-#include "Animal.hpp"
-
-class Dog : public Animal{
-	public:
-		Dog();
-		Dog(const Dog& other);
-		~Dog();
-		
-		Dog& operator=(const Dog& other);
-		void	makeSound() const override;
-};
+#include "AMateria.hpp"
 
 #endif

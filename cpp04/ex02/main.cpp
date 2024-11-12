@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:55:07 by alli              #+#    #+#             */
-/*   Updated: 2024/11/08 17:03:06 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/08 12:28:01 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	deepCopies()
 	std::cout << "OG cat's modified idea: " << catOG.getBrain()->getIdea(0) << std::endl;
 	copyCat.getBrain()->setIdea(1, "Better be careful OG");
 	std::cout << "Copy cat's modified idea: " << copyCat.getBrain()->getIdea(1) << std::endl;
+	
 
 	std::cout << "\n------Deep Copy Dog-------" << std::endl;
 	Dog dogOG;
@@ -60,8 +61,6 @@ void	deepCopies()
 	std::cout << "OG dog's modified idea: " << dogOG.getBrain()->getIdea(0) << std::endl;
 	copyDog.getBrain()->setIdea(1, "Better be careful OG");
 	std::cout << "Copy dog's modified idea: " << copyDog.getBrain()->getIdea(1) << std::endl;
-
-	std::cout << "\n-------------------Destroy Deep Copies-----------------" << std::endl;
 }
 static void AnimalArray()
 {

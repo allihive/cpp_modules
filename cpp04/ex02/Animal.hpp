@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 13:28:44 by alli              #+#    #+#             */
-/*   Updated: 2024/11/06 16:06:49 by alli             ###   ########.fr       */
+/*   Created: 2024/11/01 12:56:20 by alli              #+#    #+#             */
+/*   Updated: 2024/11/08 16:34:56 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
-int main( void ) {
-	Fixed a;
-	Fixed const b( Fixed( 5.00f ) * Fixed( 2 ) );
-	a.setRawBits(10);
-	std::cout << a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+#include <iostream>
+
+class Animal {
+	protected:
+		std::string type;
+	public:
+		Animal();
+		Animal(std::string type);
+		Animal(const Animal& other);
+		
+		Animal& operator=(const Animal& other);
+		std::string	getType()const;
+		virtual	void makeSound() const = 0;
+		virtual ~Animal() = 0;
+};
+
+#endif

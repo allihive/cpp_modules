@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 13:28:44 by alli              #+#    #+#             */
-/*   Updated: 2024/11/06 16:06:49 by alli             ###   ########.fr       */
+/*   Created: 2024/11/04 13:25:18 by alli              #+#    #+#             */
+/*   Updated: 2024/11/07 14:39:21 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef DOG_HPP
+#define DOG_HPP
 
-int main( void ) {
-	Fixed a;
-	Fixed const b( Fixed( 5.00f ) * Fixed( 2 ) );
-	a.setRawBits(10);
-	std::cout << a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
-}
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Dog : public Animal{
+	private:
+		Brain *Brain;
+	public:
+		Dog();
+		Dog(const Dog& other);
+		~Dog();
+		
+		Dog& operator=(const Dog& other);
+		void	makeSound() const override;
+		Brain* getBrain();
+};
+
+#endif

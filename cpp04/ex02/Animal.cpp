@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:56:22 by alli              #+#    #+#             */
-/*   Updated: 2024/11/07 11:56:06 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/08 12:00:36 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Animal::Animal(const Animal& other)
 }
 Animal& Animal::operator=(const Animal& other)
 {
+	std::cout << "Animal copy assignment called." << std::endl;
 	if (this == &other)
 		return *this;
 	else
