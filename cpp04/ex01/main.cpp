@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:55:07 by alli              #+#    #+#             */
-/*   Updated: 2024/11/08 17:03:06 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/12 15:40:39 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,22 @@ static void AnimalArray()
 	for (int i = 0; i < Count; i++)
 		Animals[i]->makeSound();
 	
-	std::cout << "------Destroying animals-------" << std::endl;
+	std::cout << "\n------Destroying animals-------" << std::endl;
 	for (int i = 0; i < Count; i++)
 		delete Animals[i];
 }
 
 int main()
 {	
-	std::cout << "-------------------Test from Subjects-----------------"  << std::endl;
+	std::cout << "-------------------Test from Subjects-----------------\n"  << std::endl;
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		delete j;//should not create a leak
 		delete i;
-	std::cout << "-------------------Animal Array-----------------" << std::endl;
+	std::cout << "\n-------------------Animal Array-----------------\n" << std::endl;
 	AnimalArray();
 	
-	std::cout << "-------------------Deep Copies-----------------" << std::endl;
+	std::cout << "\n-------------------Deep Copies-----------------" << std::endl;
 	deepCopies();
 
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:55:07 by alli              #+#    #+#             */
-/*   Updated: 2024/11/08 12:28:01 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/12 15:42:35 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	deepCopies()
 	std::cout << "OG dog's modified idea: " << dogOG.getBrain()->getIdea(0) << std::endl;
 	copyDog.getBrain()->setIdea(1, "Better be careful OG");
 	std::cout << "Copy dog's modified idea: " << copyDog.getBrain()->getIdea(1) << std::endl;
+
+	std::cout << "\n-------------------Destroy Deep Copies-----------------" << std::endl;
 }
 static void AnimalArray()
 {
@@ -82,15 +84,15 @@ static void AnimalArray()
 
 int main()
 {	
-	std::cout << "-------------------Test from Subjects-----------------"  << std::endl;
+	std::cout << "-------------------Test from Subjects-----------------\n"  << std::endl;
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		delete j;//should not create a leak
 		delete i;
-	std::cout << "-------------------Animal Array-----------------" << std::endl;
+	std::cout << "\n-------------------Animal Array-----------------\n" << std::endl;
 	AnimalArray();
 	
-	std::cout << "-------------------Deep Copies-----------------" << std::endl;
+	std::cout << "\n-------------------Deep Copies-----------------" << std::endl;
 	deepCopies();
 
 	return 0;

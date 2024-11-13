@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 13:25:18 by alli              #+#    #+#             */
-/*   Updated: 2024/11/12 15:36:18 by alli             ###   ########.fr       */
+/*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
+/*   Updated: 2024/11/13 16:16:13 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#include "Bureaucrat.hpp"
 
-#include "Animal.hpp"
+void	createBureau()
+{
+	Bureaucrat bebe("Bebe", 140);
+	Bureaucrat baby("Baby", 40);
+	Bureaucrat babe("Babe", 1);
+}
 
-class Dog : public Animal{
-	public:
-		Dog();
-		Dog(const Dog& other);
-		~Dog();
-		
-		Dog& operator=(const Dog& other);
-		void	makeSound() const override;
-};
-
-#endif
+int main()
+{
+	createBureau();
+}
