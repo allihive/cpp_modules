@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:45 by alli              #+#    #+#             */
-/*   Updated: 2024/11/14 11:32:02 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/15 11:20:38 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,20 @@ const char* Bureaucrat::GradeTooLowException::what() const noexcept
 const char* Bureaucrat::GradeTooHighException::what() const noexcept 
 {
 	return _msg.c_str();
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this); 
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << this->_name << " couldn't sign " << form.getName() 
+		<< " because " << e.what() << std::endl;
+	}
 }
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat& bur)
