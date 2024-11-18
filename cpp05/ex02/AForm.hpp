@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:40:55 by alli              #+#    #+#             */
-/*   Updated: 2024/11/15 10:22:56 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/18 09:41:13 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 #include <string>
@@ -20,18 +20,19 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private:
 		const std::string	_name;
 		bool				_isSigned;
 		const int			_gradeRequired;
 		const int			_gradeToExecute;
+		const std::string	_target;
 	public:
-		Form();
-		Form(const std::string _name, int gradeRequired, int gradeToExec);
-		Form(const Form& copy);
-		Form& operator=(const Form& copy);
-		~Form();
+		AForm();
+		AForm(const std::string _name, int gradeRequired, int gradeToExec, const std::string target);
+		AForm(const AForm& copy);
+		AForm& operator=(const AForm& copy);
+		virtual ~AForm();
 
 		class GradeTooHighException : public std::exception {
 			private:
@@ -47,11 +48,21 @@ class Form {
 				virtual const char* what() const noexcept override;
 				GradeTooLowException(const std::string& msg);
 		};
+		class FormNotSigned : std::exception {
+			private:
+				std::string _msg;
+			public:
+				virtual const char* what() const noexcept override;
+				FormNotSigned(const std::string& msg);
+		};
+		
 		const std::string& getName() const;
 		bool		getIsSigned() const;
 		int			getGradeRequired() const;
 		int			getGradeToExecute() const;
 		void		beSigned(Bureaucrat& bureaucrat);
+		void		execute(Bureaucrat const & executor) const;
+		virtual void	executeAction() const = 0;
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& obj);
