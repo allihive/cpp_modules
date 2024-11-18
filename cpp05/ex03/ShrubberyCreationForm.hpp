@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 12:55:08 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:06:16 by alli             ###   ########.fr       */
+/*   Created: 2024/11/15 12:54:08 by alli              #+#    #+#             */
+/*   Updated: 2024/11/18 12:22:22 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-#define PRESIDENTIALPARDONFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include <fstream>
 
 class AForm;
 
-class PresidentialPardonForm : public AForm
+class ShrubberyCreationForm : public AForm
 {
 	public:
-		PresidentialPardonForm();
-		PresidentialPardonForm(const std::string& target);
-		PresidentialPardonForm(const PresidentialPardonForm& copy);
-		~PresidentialPardonForm();
-		PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
-
-		void executeAction() const;
+		std::string target;
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(const std::string& target);
+		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
+		~ShrubberyCreationForm();
+		
+		void	executeAction() const;
 };
 
 #endif
