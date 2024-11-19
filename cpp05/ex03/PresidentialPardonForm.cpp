@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:55:04 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:05:58 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 09:46:29 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ PresidentialPardonForm::PresidentialPardonForm()
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target) 
 	: AForm("Presidential Pardon Form", 25, 5, target)
 {
-	// std::cout << "Printing target in ppf: " << this->target << std::endl;
 	std::cout << "Constructor Presidential Pardon Form called." << std::endl;
 }
 

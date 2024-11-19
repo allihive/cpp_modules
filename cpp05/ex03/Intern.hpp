@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:02:25 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 16:29:00 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 09:28:54 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp";
+#include "RobotomyRequestForm.hpp"
 
 
 class Intern {

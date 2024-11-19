@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:09:28 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 16:32:59 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 09:37:41 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,33 @@ Intern& Intern::operator=(const Intern& copy)
 AForm* Intern::makeForm(std::string formName, std::string target)
 {
 	AForm*		newForm;
-	int			ind;
-	std::string forms[] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
+	int			ind = 0;
+	std::string forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	
-	for (int i = 0; i < forms->length(); i++)
+	for (unsigned long i = 0; i < forms->length(); i++)
 	{
 		if (formName == forms[i])
 		{
 			ind = i;
 			break;
 		}
+		ind++;
 	}
 	switch(ind) {
 		case 0:
-			newForm = new (std::nothrow) ShrubberyCreationForm;
+			newForm = new (std::nothrow) ShrubberyCreationForm(target);
 			break;
 		case 1:
-			newForm = new (std::nothrow) RobotomyRequestForm;
+			newForm = new (std::nothrow) RobotomyRequestForm(target);
 			break;
 		case 2:
-			newForm = new (std::nothrow) PresidentialPardonForm;
+			newForm = new (std::nothrow) PresidentialPardonForm(target);
 			break;
 		default:
 			newForm = nullptr;
 			std::cout << formName << " form does not exist and cannot be created." << std::endl;
+			return newForm;
 	}
+	std::cout << "Intern creates " << formName << std::endl;
 	return newForm;
 }

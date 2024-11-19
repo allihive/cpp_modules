@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:41:06 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:05:30 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 09:33:47 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ AForm::AForm () : _name("No name"), _isSigned(false), _gradeRequired(150), _grad
 AForm::AForm(const std::string name, int gradeRequired, int gradeToExec, const std::string target) :
 	_name(name), _gradeRequired(gradeRequired), _gradeToExecute(gradeToExec), _target(target)
 {
-	std::cout << "Print target: " << this->_target << std::endl;
 	if (this->_gradeRequired > 150)
 		throw (GradeTooLowException("The grade required is too low"));
 	if (this->_gradeRequired < 1)

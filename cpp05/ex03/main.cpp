@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 15:55:12 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 09:36:56 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 void	createForm()
 {
@@ -61,39 +62,17 @@ void	presidentFaultyForm()
 		std::cerr << e.what() << '\n';
 	}
 }
-void	shrubberyFaultyForm()
+
+void	internForm()
 {
-	try
-	{
-		std::cout << "\n----------ShrubberyFaulty Form----------" << std::endl;
-		ShrubberyCreationForm shrubz("Shrubz");
-		Bureaucrat dada("Dada", 150);
-		
-		dada.signForm(shrubz);	
-		shrubz.beSigned(dada);
-		dada.executeForm(shrubz);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-}
-void	robotFaultyForm()
-{
-	try
-	{
-		std::cout << "\n----------Robot Faulty Form----------" << std::endl;
-		RobotomyRequestForm roots("Root");
-		Bureaucrat dodo("Dodo", 150);
-		
-		dodo.signForm(roots);	
-		roots.beSigned(dodo);
-		dodo.executeForm(roots);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "\n----------Intern Creates Form----------" << std::endl;
+	Intern someRandomIntern;
+	AForm* rrf;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	std::cout << std::endl;
+	Intern wrongName;
+	AForm *stuff;
+	stuff = wrongName.makeForm("hello there", "friend");
 }
 
 
@@ -102,7 +81,5 @@ int main()
 {
 	createForm();
 	presidentFaultyForm();
-	shrubberyFaultyForm();
-	robotFaultyForm();
-	
+	internForm();
 }
