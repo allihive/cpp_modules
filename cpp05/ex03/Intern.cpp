@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:09:28 by alli              #+#    #+#             */
-/*   Updated: 2024/11/19 09:37:41 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 12:52:23 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ AForm* Intern::makeForm(std::string formName, std::string target)
 	int			ind = 0;
 	std::string forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	
-	for (unsigned long i = 0; i < forms->length(); i++)
+	for (unsigned long i = 0; i < 3; i++)
 	{
 		if (formName == forms[i])
 		{

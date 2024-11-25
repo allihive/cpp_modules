@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/15 12:40:51 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/25 12:48:21 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ void	createForm()
 	std::cout << "\n----------Create Form----------" << std::endl;
 	try
 	{
-		Form adopt("Adopt", 150, 65);
+		Form adopt("Adopt", 20, 65);
 		Form recycle("Recycle", 45, 56);
 		
-		Bureaucrat dede("Dede", 4);
-		adopt.beSigned(dede);
-		recycle.beSigned(dede);
+		Bureaucrat dede("Dede", 5);
 		dede.signForm(adopt);
-		dede.signForm(recycle);
 
 	}
 	catch (std::exception& e)

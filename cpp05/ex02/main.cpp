@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 15:55:12 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 12:41:11 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	presidentFaultyForm()
 	{
 		std::cout << "\n----------President Faulty Form----------" << std::endl;
 		PresidentialPardonForm shop("Shop");
-		Bureaucrat didi("Didi", 150);
+		Bureaucrat didi("Didi", 3);
 		
 		didi.signForm(shop);	
 		shop.beSigned(didi);

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:45 by alli              #+#    #+#             */
-/*   Updated: 2024/11/15 11:20:38 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 12:19:22 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	Bureaucrat::signForm(Form& form)
 {
 	try
 	{
+		
 		form.beSigned(*this); 
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}

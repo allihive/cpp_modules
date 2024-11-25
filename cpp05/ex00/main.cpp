@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/14 11:39:41 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 12:12:43 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	faultyBureau()
 	}
 	try
 	{
-		Bureaucrat highBaby("High Baby", 0);
+		Bureaucrat highBaby("High Baby", -1);
 	}
 	catch(const std::exception& e)
 	{

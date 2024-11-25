@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/19 09:36:56 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/25 13:58:07 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	createForm()
 		RobotomyRequestForm robots("Robot");
 		ShrubberyCreationForm shrubs("Shrubs");
 		Bureaucrat dede("Dede", 4);
-		
-		president.beSigned(dede);
-		robots.beSigned(dede);
-		shrubs.beSigned(dede);
 		
 		dede.signForm(president);
 		dede.signForm(robots);
@@ -73,6 +69,8 @@ void	internForm()
 	Intern wrongName;
 	AForm *stuff;
 	stuff = wrongName.makeForm("hello there", "friend");
+	delete stuff;
+	delete rrf;
 }
 
 

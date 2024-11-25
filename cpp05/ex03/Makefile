@@ -1,7 +1,7 @@
 NAME = Bureau
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++11
+CFLAGS = -Wall -Wextra -Werror -std=c++11 -g
 
 SRCS = main.cpp Bureaucrat.cpp AForm.cpp \
 		PresidentialPardonForm.cpp RobotomyRequestForm.cpp \

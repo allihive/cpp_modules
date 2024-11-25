@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:41:06 by alli              #+#    #+#             */
-/*   Updated: 2024/11/15 11:58:48 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/19 12:40:25 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Form::Form () : _name("No name"), _isSigned(false), _gradeRequired(150), _gradeT
 }
 
 Form::Form(const std::string name, int gradeRequired, int gradeToExec) :
-	_name(name), _gradeRequired(gradeRequired), _gradeToExecute(gradeToExec)
+	_name(name), _isSigned(false), _gradeRequired(gradeRequired), _gradeToExecute(gradeToExec)
 {
 	if (this->_gradeRequired > 150)
 		throw (GradeTooLowException("The grade required is too low"));
