@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:40:55 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:04:24 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 16:36:44 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class AForm {
 				virtual const char* what() const noexcept override;
 				GradeTooLowException(const std::string& msg);
 		};
-		class FormNotSigned : std::exception {
+		class FormNotSigned : public std::exception {
 			private:
 				std::string _msg;
 			public:

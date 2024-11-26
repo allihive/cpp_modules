@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:12:30 by alli              #+#    #+#             */
-/*   Updated: 2024/11/25 15:02:31 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 15:06:21 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ class Scalar {
 
 int	getType(std::string str);
 void	convertChar(std::string str, char& c, int& i, float& f, double& d);
-void	convertFloat(std::string str, char& c, int& i, float& f, double& d);
-void	convertDouble(std::string str, char& c, int& i, float& f, double& d);
-void	convertInt(std::string str, char& c, int& i, float& f, double& d);
+bool	convertFloat(std::string str, char& c, int& i, float& f, double& d);
+bool	convertDouble(std::string str, char& c, int& i, float& f, double& d);
+bool	convertInt(std::string str, char& c, int& i, float& f, double& d);
 void	printScalar(std:: string str, char& c, int& i, float& f, double& d);
 
+bool	isInt(std::string str);
+int		floatOrDouble(std::string str);
 #endif

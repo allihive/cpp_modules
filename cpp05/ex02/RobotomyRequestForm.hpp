@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:55:12 by alli              #+#    #+#             */
-/*   Updated: 2024/11/19 12:32:41 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 16:41:28 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
+#include <ctime>
 
 class AForm;
 

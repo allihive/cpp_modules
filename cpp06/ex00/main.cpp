@@ -6,9 +6,13 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:42 by alli              #+#    #+#             */
-/*   Updated: 2024/11/19 11:27:14 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 15:13:33 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
 
+int main(int argc, char **argv)
+{
+	Scalar::convert(argv[1]);
+}

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/19 12:41:11 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 16:56:37 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	createForm()
 		ShrubberyCreationForm shrubs("Shrubs");
 		Bureaucrat dede("Dede", 4);
 		
-		president.beSigned(dede);
-		robots.beSigned(dede);
-		shrubs.beSigned(dede);
-		
 		dede.signForm(president);
 		dede.signForm(robots);
 		dede.signForm(shrubs);
@@ -37,6 +33,7 @@ void	createForm()
 		dede.executeForm(president);
 		dede.executeForm(robots);
 		dede.executeForm(shrubs);
+		robots.execute(dede);
 	}
 	catch (std::exception& e)
 	{
@@ -101,8 +98,8 @@ void	robotFaultyForm()
 int main()
 {
 	createForm();
-	presidentFaultyForm();
-	shrubberyFaultyForm();
-	robotFaultyForm();
+	// presidentFaultyForm();
+	// shrubberyFaultyForm();
+	// robotFaultyForm();
 	
 }

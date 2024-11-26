@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:21:09 by alli              #+#    #+#             */
-/*   Updated: 2024/11/25 13:58:07 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 14:11:41 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	createForm()
 		dede.executeForm(president);
 		dede.executeForm(robots);
 		dede.executeForm(shrubs);
+		robots.execute(dede);
 	}
 	catch (std::exception& e)
 	{

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:55:10 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:06:49 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/26 16:44:39 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ RobotomyRequestForm::~RobotomyRequestForm()
 void	RobotomyRequestForm::executeAction() const
 {
 	std::cout << "Vrrrrrrr!" << std::endl;
+	
+	std::srand(std::time(0));
 	int randomRobot = rand() % 2;
 	
 	if (randomRobot == true)
