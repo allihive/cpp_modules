@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:12:32 by alli              #+#    #+#             */
-/*   Updated: 2024/11/26 13:10:53 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/27 13:29:22 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,28 @@ void	Scalar::convert(std::string str)
 	type = getType(str);
 	std::cout << type << std::endl;
 	
-	// char c = 0;
-	// int i = 0;
-	// float f = 0.0f;
-	// double d = 0.0;
+	char c = 0;
+	int i = 0;
+	float f = 0.0f;
+	double d = 0.0;
 	
-	// switch (type)
-	// {
-	// 	case 1:
-	// 		convertChar(str, c, i, f, d);
-	// 		break;
-	// 	case 2:
-			// convertInt(str, c, i, f, d);
-	// 		
-	// 		break;
-	// 	case 3:
-			// convertFloat(str, c, i, f, d);
-	// 		break;
-	// 	case 4:
-	// 		convertDouble(str, c, i, f, d);
-	// 		break;
-	// default:
-	// 	std::cout << "invalid input" << std::endl;
-	// }
-	// printScalar(str, c, i , f, d);
+	switch (type)
+	{
+		case 1:
+			convertChar(str, c, i, f, d);
+			break;
+		case 2:
+			if (convertInt(str, c, i, f, d) == true)
+			break;
+		case 3:
+			if (convertFloat(str, c, i, f, d) == true)
+			break;
+		case 4:
+			if (convertDouble(str, c, i, f, d) == true)
+			break;
+	default:
+		std::cout << "invalid input" << std::endl;
+	}
+	if (type > 0)
+		printScalar(str, c, i , f, d);
 }

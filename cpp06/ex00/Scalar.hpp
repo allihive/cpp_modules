@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:12:30 by alli              #+#    #+#             */
-/*   Updated: 2024/11/26 15:06:21 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/27 13:59:56 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 #include <iostream>
-#include <cmath>
+#include <iomanip>
 #include <limits>
 
 class Scalar {

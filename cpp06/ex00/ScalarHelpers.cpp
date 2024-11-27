@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:12:27 by alli              #+#    #+#             */
-/*   Updated: 2024/11/26 15:15:18 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/27 15:29:37 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 bool isInt(std::string str)
 {
 	int i = 0;
+	if (str.length() > 11)
+		return false;
 	while (str.length() && (str[i] != '\0'))
 	{
 		if (i == 0 && str[i] == '-')
@@ -42,22 +44,21 @@ int floatOrDouble(std::string str)
 	
 	if (infNancheck(str) > 2)
 		return (infNancheck(str));
-	while (i < str.length() - 1)
-	{
-		if (i == 0 && str[0] == '-')
-			i++;
-		while (isdigit(str[i]) && str[i] != '-')
-			i++;
-		if (str[i] == '.' && isdigit(str[i + 1]))
-		{
-			count++;
-			i++;
-			flag = 1;
-			continue;
-		}
-		else if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-')
-			return 0;
+	if (i == 0 && str[0] == '-')
 		i++;
+	while (isdigit(str[i]) && str[i] != '-')
+		i++;
+	if (str[i] == '.' && isdigit(str[i + 1]))
+	{
+		count++;
+		i++;
+		flag = 1;
+	}
+	else if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-')
+	{
+		std::cout << "entered here" << std::endl;
+		std::cout << str[i] << std::endl;
+		return 0;
 	}
 	if (count > 1)
 		return 0;
@@ -72,7 +73,6 @@ int	getType(std::string str)
 {
 	int len = str.length();
 	
-	
 	if (str[0] >= 'a' && str[0] <= 'z' && len == 1)
 		return (1);
 	if (isInt(str) == true)
@@ -86,6 +86,7 @@ int	getType(std::string str)
 
 void	convertChar(std::string str, char& c, int& i, float& f, double& d)
 {
+	std::cout << "comes into convert char" << std::endl;
 	c = str[0];
 	i = static_cast<int>(c);
 	f = static_cast<float>(c);
@@ -97,7 +98,14 @@ bool convertFloat(std::string str, char& c, int& i, float& f, double& d)
 	try
 	{
 		f = std::stof(str);
+		if (f > std::numeric_limits<float>::max() || f < std::numeric_limits<float>::min())
+			return false;
 		i = static_cast<int>(f);
+		if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
+		{
+			std::cout << "returned false in covert float" << std::endl;
+			return false;
+		}
 		d = static_cast<double>(f);
 		c = static_cast<char>(f);
 	}
@@ -129,10 +137,16 @@ bool convertInt(std::string str, char& c, int& i, float& f, double& d)
 {
 	try
 	{
+		std::cout << "in convertInt" << std::endl;
 		i = std::stoi(str);
+		if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
+		{
+			
+			return false;
+		}
 		f = static_cast<float>(i);
 		c = static_cast<char>(i);
-		d = static_cast<double>(d);
+		d = static_cast<double>(i);
 	}
 	catch (std::exception &e)
 	{
@@ -141,10 +155,32 @@ bool convertInt(std::string str, char& c, int& i, float& f, double& d)
 	}
 	return true;
 }
+void	printChar(std::string str, char& c, int& i)
+{
+	if (infNancheck(str) > 2)
+		std::cout << "char: impossible" << std::endl;
+	else if (i >= 32 && i <= 126)
+		std::cout << "char: '" << c << "'"<< std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+}
+void	printInt(std::string str, int i)
+{
+	if (infNancheck(str) > 2)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << i << std::endl;
+	
+}
 void printScalar(std::string str, char& c, int& i, float& f, double& d)
 {
-	std::cout << "char: " << c << std::endl;
-	std::cout << "int: " << i << std::endl;
-	std::cout << "float: " << f << std::endl;
-	std::cout << "double: " << d << std::endl;
+	printChar(str, c, i);
+	printInt(str, i);
+	if (d == i)
+	{
+		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+	}
+	std::cout << "float: " << std::fixed << std::setprecision(5) << f << "f" << std::endl;
+	std::cout << "double: "<< std::fixed << std::setprecision(5) << d << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:42 by alli              #+#    #+#             */
-/*   Updated: 2024/11/26 15:13:33 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/27 11:28:59 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	Scalar::convert(argv[1]);
+	if (argc == 2)
+		Scalar::convert(argv[1]);
+	return 0;
 }
