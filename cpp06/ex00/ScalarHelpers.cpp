@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:12:27 by alli              #+#    #+#             */
-/*   Updated: 2024/11/27 15:29:37 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/29 10:15:34 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,7 @@ int floatOrDouble(std::string str)
 		flag = 1;
 	}
 	else if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-')
-	{
-		std::cout << "entered here" << std::endl;
-		std::cout << str[i] << std::endl;
 		return 0;
-	}
 	if (count > 1)
 		return 0;
 	if (str[(str.length() - 1)] == 'f' && flag == 1)
@@ -97,17 +93,11 @@ bool convertFloat(std::string str, char& c, int& i, float& f, double& d)
 {
 	try
 	{
+		std::cout << "entered convert float" << std::endl;
 		f = std::stof(str);
-		if (f > std::numeric_limits<float>::max() || f < std::numeric_limits<float>::min())
-			return false;
-		i = static_cast<int>(f);
-		if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
-		{
-			std::cout << "returned false in covert float" << std::endl;
-			return false;
-		}
 		d = static_cast<double>(f);
 		c = static_cast<char>(f);
+		i = static_cast<int>(f);
 	}
 	catch (std::exception &e)
 	{
@@ -140,10 +130,7 @@ bool convertInt(std::string str, char& c, int& i, float& f, double& d)
 		std::cout << "in convertInt" << std::endl;
 		i = std::stoi(str);
 		if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
-		{
-			
 			return false;
-		}
 		f = static_cast<float>(i);
 		c = static_cast<char>(i);
 		d = static_cast<double>(i);
@@ -168,6 +155,12 @@ void	printInt(std::string str, int i)
 {
 	if (infNancheck(str) > 2)
 		std::cout << "int: impossible" << std::endl;
+	if (i == -2147483648 || i == 2147483647)
+	{
+		std::string inti = std::to_string(i); // think about float and double
+		if (inti.compare(str) != 0)
+			std::cout << "int: impossible" << std::endl;
+	}
 	else
 		std::cout << "int: " << i << std::endl;
 	
@@ -181,6 +174,9 @@ void printScalar(std::string str, char& c, int& i, float& f, double& d)
 		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
 	}
-	std::cout << "float: " << std::fixed << std::setprecision(5) << f << "f" << std::endl;
-	std::cout << "double: "<< std::fixed << std::setprecision(5) << d << std::endl;
+	else
+	{
+		std::cout << "float: " << std::fixed << std::setprecision(5) << f << "f" << std::endl;
+		std::cout << "double: "<< std::fixed << std::setprecision(5) << d << std::endl;	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:12:32 by alli              #+#    #+#             */
-/*   Updated: 2024/11/27 13:29:22 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/29 10:50:46 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Scalar::Scalar(const Scalar& copy)
 Scalar& Scalar::operator=(const Scalar& copy)
 {
 	(void)copy;
-	std::cout << "Copy asignment called.\n";
+	std::cout << "Copy assignment called.\n";
 	return *this;
 }
 
@@ -50,13 +50,16 @@ void	Scalar::convert(std::string str)
 			convertChar(str, c, i, f, d);
 			break;
 		case 2:
-			if (convertInt(str, c, i, f, d) == true)
+			if (convertInt(str, c, i, f, d) == false)
+				return;
 			break;
 		case 3:
-			if (convertFloat(str, c, i, f, d) == true)
+			if (convertFloat(str, c, i, f, d) == false)
+				return;
 			break;
 		case 4:
-			if (convertDouble(str, c, i, f, d) == true)
+			if (convertDouble(str, c, i, f, d) == false)
+				return;
 			break;
 	default:
 		std::cout << "invalid input" << std::endl;

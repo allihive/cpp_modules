@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:54:18 by alli              #+#    #+#             */
-/*   Updated: 2024/11/18 14:10:26 by alli             ###   ########.fr       */
+/*   Updated: 2024/11/28 13:56:08 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form"
 	std::cout << "Default Shrubbery Creation Form created.\n";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 147, 137, target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 145, 137, target)
 {
 	std::cout << "Shrubbery Creation Form created.\n";
 }
