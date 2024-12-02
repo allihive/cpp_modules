@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 14:52:06 by alli              #+#    #+#             */
-/*   Updated: 2024/12/02 12:58:26 by alli             ###   ########.fr       */
+/*   Created: 2024/12/02 13:41:33 by alli              #+#    #+#             */
+/*   Updated: 2024/12/02 13:50:28 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef C_HPP
+#define C_HPP
 
-#include <iostream>
+#include "Base.hpp"
 
-class Base {
-	public:
-		virtual ~Base();
-		Base* generate(void);
-		void identify(Base* p);
-		void identify(Base& p);
-};
+class C : public Base {};
 
 #endif
