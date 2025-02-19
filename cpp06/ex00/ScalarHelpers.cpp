@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:12:27 by alli              #+#    #+#             */
-/*   Updated: 2024/11/29 10:15:34 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/19 10:16:26 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ int infNancheck(std::string str)
 int floatOrDouble(std::string str)
 {
 	unsigned long i = 0;
+	unsigned long j = 0;
 	int count = 0;
+	int fcount = 0;
 	int flag = 0;
-	
+
 	if (infNancheck(str) > 2)
 		return (infNancheck(str));
 	if (i == 0 && str[0] == '-')
@@ -54,7 +56,17 @@ int floatOrDouble(std::string str)
 		i++;
 		flag = 1;
 	}
-	else if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-')
+	while (str[j])
+	{
+		if (str[j] == 'f')
+		{
+			fcount++;
+			j++;
+		}
+		else
+			j++;
+	}
+	if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-' || fcount > 1)
 		return 0;
 	if (count > 1)
 		return 0;
