@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:52:06 by alli              #+#    #+#             */
-/*   Updated: 2024/12/02 12:58:26 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/19 09:12:52 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 class Base {
 	public:
 		virtual ~Base();
-		Base* generate(void);
-		void identify(Base* p);
-		void identify(Base& p);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:12:27 by alli              #+#    #+#             */
-/*   Updated: 2025/02/19 10:16:26 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/19 10:25:41 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ bool convertFloat(std::string str, char& c, int& i, float& f, double& d)
 {
 	try
 	{
-		std::cout << "entered convert float" << std::endl;
 		f = std::stof(str);
 		d = static_cast<double>(f);
 		c = static_cast<char>(f);
@@ -139,7 +138,6 @@ bool convertInt(std::string str, char& c, int& i, float& f, double& d)
 {
 	try
 	{
-		std::cout << "in convertInt" << std::endl;
 		i = std::stoi(str);
 		if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
 			return false;

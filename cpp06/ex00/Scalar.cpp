@@ -6,7 +6,7 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:12:32 by alli              #+#    #+#             */
-/*   Updated: 2024/11/29 10:50:46 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/19 10:26:05 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	Scalar::convert(std::string str)
 {
 	int type = 0;
 	type = getType(str);
-	std::cout << type << std::endl;
 	
 	char c = 0;
 	int i = 0;
