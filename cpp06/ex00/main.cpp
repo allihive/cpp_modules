@@ -6,15 +6,15 @@
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:42 by alli              #+#    #+#             */
-/*   Updated: 2024/11/27 11:28:59 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/20 14:50:05 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "ScalarConverter.hpp"
 
 int main(int argc, char **argv)
 {
 	if (argc == 2)
-		Scalar::convert(argv[1]);
+		ScalarConverter::convert(argv[1]);
 	return 0;
 }

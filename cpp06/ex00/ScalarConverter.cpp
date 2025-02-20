@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Scalar.cpp                                         :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "ScalarConverter.hpp"
 
-Scalar::Scalar()
+ScalarConverter::ScalarConverter()
 {
 	std::cout << "Default constructor called.\n" ;
 }
 
-Scalar::Scalar(const Scalar& copy)
+ScalarConverter::ScalarConverter(const ScalarConverter& copy)
 {
 	(void)copy;
 	std::cout << "Copy constructor called.\n";
 }
-Scalar& Scalar::operator=(const Scalar& copy)
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copy)
 {
 	(void)copy;
 	std::cout << "Copy assignment called.\n";
 	return *this;
 }
 
-Scalar::~Scalar()
+ScalarConverter::~ScalarConverter()
 {
 	std::cout << "Destructor called.\n";
 }
-void	Scalar::convert(std::string str)
+void	ScalarConverter::convert(std::string str)
 {
 	int type = 0;
 	type = getType(str);
@@ -64,5 +64,5 @@ void	Scalar::convert(std::string str)
 		std::cout << "invalid input" << std::endl;
 	}
 	if (type > 0)
-		printScalar(str, c, i , f, d);
+		printScalarConverter(str, c, i , f, d);
 }

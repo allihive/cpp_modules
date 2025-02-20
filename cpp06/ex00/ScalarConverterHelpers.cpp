@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarHelpers.cpp                                  :+:      :+:    :+:   */
+/*   ScalarConverterHelpers.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alli <alli@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:12:27 by alli              #+#    #+#             */
-/*   Updated: 2025/02/19 10:25:41 by alli             ###   ########.fr       */
+/*   Updated: 2025/02/20 14:17:11 by alli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#include "ScalarConverter.hpp"
 
 bool isInt(std::string str)
 {
@@ -42,6 +42,7 @@ int floatOrDouble(std::string str)
 	unsigned long j = 0;
 	int count = 0;
 	int fcount = 0;
+	int periodFlag = 0;
 	int flag = 0;
 
 	if (infNancheck(str) > 2)
@@ -50,12 +51,6 @@ int floatOrDouble(std::string str)
 		i++;
 	while (isdigit(str[i]) && str[i] != '-')
 		i++;
-	if (str[i] == '.' && isdigit(str[i + 1]))
-	{
-		count++;
-		i++;
-		flag = 1;
-	}
 	while (str[j])
 	{
 		if (str[j] == 'f')
@@ -63,16 +58,28 @@ int floatOrDouble(std::string str)
 			fcount++;
 			j++;
 		}
+		if (str[j] == '.')
+		{
+			periodFlag++;
+			j++;
+		}
 		else
 			j++;
 	}
+	if (str[i] == '.' && isdigit(str[i + 1]))
+	{
+		count++;
+		i++;
+		flag = 1;
+	}
+	std::cout << "none of the above " << flag << std::endl;
 	if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-' || fcount > 1)
 		return 0;
 	if (count > 1)
 		return 0;
-	if (str[(str.length() - 1)] == 'f' && flag == 1)
+	if (str[(str.length() - 1)] == 'f' && flag == 1 && periodFlag == 1)
 		return 3; //float
-	if (flag == 1)
+	if (flag == 1 && periodFlag == 1)
 		return 4; // double
 	return 0;
 }
@@ -81,7 +88,7 @@ int	getType(std::string str)
 {
 	int len = str.length();
 	
-	if (str[0] >= 'a' && str[0] <= 'z' && len == 1)
+	if (str[0] >= 32 && str[0] <= 126 && len == 1)
 		return (1);
 	if (isInt(str) == true)
 		return (2);
@@ -94,7 +101,6 @@ int	getType(std::string str)
 
 void	convertChar(std::string str, char& c, int& i, float& f, double& d)
 {
-	std::cout << "comes into convert char" << std::endl;
 	c = str[0];
 	i = static_cast<int>(c);
 	f = static_cast<float>(c);
@@ -175,7 +181,7 @@ void	printInt(std::string str, int i)
 		std::cout << "int: " << i << std::endl;
 	
 }
-void printScalar(std::string str, char& c, int& i, float& f, double& d)
+void printScalarConverter(std::string str, char& c, int& i, float& f, double& d)
 {
 	printChar(str, c, i);
 	printInt(str, i);

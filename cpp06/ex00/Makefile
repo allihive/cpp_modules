@@ -3,7 +3,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRCS = main.cpp ScalarHelpers.cpp Scalar.cpp
+SRCS = main.cpp ScalarConverterHelpers.cpp ScalarConverter.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
