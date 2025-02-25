@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include "limits.h"
 
 bool isInt(std::string str)
 {
@@ -41,9 +42,8 @@ int floatOrDouble(std::string str)
 	unsigned long i = 0;
 	unsigned long j = 0;
 	int count = 0;
-	int fcount = 0;
 	int periodFlag = 0;
-	int flag = 0;
+	// int flag = 0;
 
 	if (infNancheck(str) > 2)
 		return (infNancheck(str));
@@ -53,33 +53,43 @@ int floatOrDouble(std::string str)
 		i++;
 	while (str[j])
 	{
-		if (str[j] == 'f')
+		if (!isdigit(str[j]))
 		{
-			fcount++;
-			j++;
+			if (str[j] == 'f')
+			{
+				if (j != str.length() - 1)
+					return 0;
+				j++;
+				continue;
+			}
+			if (str[j] == '.')
+			{
+				periodFlag++;
+				j++;
+				continue;
+			}
+			if (str[j] == '-')
+			{
+				j++;
+				continue;
+			}
+			else if (str[i] != '.' || str[i] != 'f')
+				return 0;
+			else
+			{
+				j++;
+				continue;
+			}
 		}
-		if (str[j] == '.')
-		{
-			periodFlag++;
-			j++;
-		}
-		else
-			j++;
+		j++;
 	}
-	if (str[i] == '.' && isdigit(str[i + 1]))
-	{
-		count++;
-		i++;
-		flag = 1;
-	}
-	std::cout << "none of the above " << flag << std::endl;
-	if ((!isdigit(str[i]) && str[str.length() - 1] != 'f') || str[i] == '-' || fcount > 1)
+	if (str[i] != '.'|| str[i] == '-' || periodFlag > 1 )
 		return 0;
 	if (count > 1)
 		return 0;
-	if (str[(str.length() - 1)] == 'f' && flag == 1 && periodFlag == 1)
+	if (str[(str.length() - 1)] == 'f' && periodFlag == 1) //&& flag == 1 
 		return 3; //float
-	if (flag == 1 && periodFlag == 1)
+	if (periodFlag == 1)// if (flag == 1 && periodFlag == 1)
 		return 4; // double
 	return 0;
 }
@@ -87,8 +97,7 @@ int floatOrDouble(std::string str)
 int	getType(std::string str)
 {
 	int len = str.length();
-	
-	if (str[0] >= 32 && str[0] <= 126 && len == 1)
+	if (str[0] >= 32 && str[0] <= 126 && len == 1 && !isdigit(str[0]))
 		return (1);
 	if (isInt(str) == true)
 		return (2);
@@ -169,14 +178,11 @@ void	printChar(std::string str, char& c, int& i)
 }
 void	printInt(std::string str, int i)
 {
+	double inti = std::strtod(str.c_str(), nullptr);
 	if (infNancheck(str) > 2)
 		std::cout << "int: impossible" << std::endl;
-	if (i == -2147483648 || i == 2147483647)
-	{
-		std::string inti = std::to_string(i); // think about float and double
-		if (inti.compare(str) != 0)
-			std::cout << "int: impossible" << std::endl;
-	}
+	if (inti > INT_MAX || inti < INT_MIN)
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << i << std::endl;
 	
@@ -192,7 +198,7 @@ void printScalarConverter(std::string str, char& c, int& i, float& f, double& d)
 	}
 	else
 	{
-		std::cout << "float: " << std::fixed << std::setprecision(5) << f << "f" << std::endl;
-		std::cout << "double: "<< std::fixed << std::setprecision(5) << d << std::endl;	
+		std::cout << "float: " << std::fixed << std::setprecision(2) << f << "f" << std::endl;
+		std::cout << "double: "<< std::fixed << std::setprecision(2) << d << std::endl;	
 	}
 }
