@@ -7,6 +7,7 @@ class Array {
 		size_t _size;
 	public:
 		Array();
+		~Array();
 		Array(unsigned int n);
 		Array(const Array<T>& other);
 		Array<T>& operator=(const Array<T>& other);
@@ -18,6 +19,11 @@ template<typename T>
 Array<T>::Array () {
 	this->_array = nullptr;
 	this->_size = 0;
+}
+
+template<typename T>
+Array<T>::Array () {
+	delete[] this->_array;
 }
 
 template<typename T>
@@ -50,3 +56,17 @@ Array<T>& Array<T>::operator=(const Array<T>& other)
 	return *this;
 }
 
+template<typename T>
+T& Array<T>::operator[](unsigned int index)
+{
+	if (index >= this->_size)
+		throw std::out_of_range;
+	else
+		return (this->_array[index]);
+}
+
+template<typename T>
+unsigned int Array<T>::size()
+{
+	return this->_size;
+}
