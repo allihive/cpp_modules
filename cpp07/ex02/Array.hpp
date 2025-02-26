@@ -28,10 +28,25 @@ Array<T>::Array(unsigned int n) {
 
 template<typename T>
 Array<T>::Array(const Array<T>& other){
+
 	this->_size = other.size();
-	this->_array = new T[_size];
+	this->_array = new T[this->_size];
 	for (size_t i = 0; i < _size; ++i)
 	{
-		_array[i] = other[i];
+		_array[i] = other._array[i];
 	}
 }
+
+template<typename T>
+Array<T>& Array<T>::operator=(const Array<T>& other)
+{
+	if (this != other)
+	{
+		this->_size = other.size();
+		this->_array = new T[this->_size];
+		for (size_t i = 0; i < this->_size; i++)
+			_array[i] = other[i];
+	}
+	return *this;
+}
+
