@@ -13,8 +13,9 @@ class Array {
 		Array(unsigned int n);
 		Array(const Array<T>& other);
 		Array<T>& operator=(const Array<T>& other);
+
 		T& operator[](unsigned int index);
-		unsigned int size();
+		unsigned int size() const;
 };
 
 template<typename T>
@@ -62,13 +63,13 @@ template<typename T>
 T& Array<T>::operator[](unsigned int index)
 {
 	if (index >= this->_size)
-		throw std::out_of_range;
+		throw std::out_of_range("Index out of range");
 	else
 		return (this->_array[index]);
 }
 
 template<typename T>
-unsigned int Array<T>::size()
+unsigned int Array<T>::size() const
 {
 	return this->_size;
 }

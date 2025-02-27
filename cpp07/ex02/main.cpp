@@ -18,7 +18,10 @@ int main()
 	for (size_t i = 0; i < intArr.size(); i++)
 	{
 		if (intArr[i] == random[i])
+		{
+			std::cout << "matching!" << std::endl;
 			continue;
+		}
 		else
 			std::cout << "Values are not the same!" << std::endl;
 	}
@@ -42,6 +45,24 @@ int main()
 	{
 		std::cout << copy[i] << std::endl;
 	}
+	
+	std::cout << "* copy assignment operator *" << std::endl;
+	Array<std::string> copyString = strArray;
+	for (size_t i = 0; i < copyString.size(); i++)
+	{
+		std::cout << copyString[i] << std::endl;
+	}
+
+	std::cout << "* accessing out of bounds *" << std::endl;
+	try {
+		strArray[-2];
+	}
+	catch (std::exception& e) 
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+
 	std::cout << "Size(): " << strArray.size() << std::endl;
 	strArray.size();
 }
