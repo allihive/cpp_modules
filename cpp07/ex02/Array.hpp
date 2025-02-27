@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 template <typename T>
 class Array {
 	private:
@@ -22,7 +24,7 @@ Array<T>::Array () {
 }
 
 template<typename T>
-Array<T>::Array () {
+Array<T>::~Array () {
 	delete[] this->_array;
 }
 
