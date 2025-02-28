@@ -39,15 +39,22 @@ unsigned int Span::longestSpan()
 {
 	if (_arr.size() < 2)
 		std::length_error("Not enough elements added");
-	auto min = std::min_element(_arr.begin(), _arr.end());
-	auto max = std::max_element(_arr.begin(), _arr.end());
+	unsigned int min = *std::min_element(_arr.begin(), _arr.end());
+	unsigned int max = *std::max_element(_arr.begin(), _arr.end());
 	return (max - min);
 }
 unsigned int Span::shortestSpan()
 {
-	std::vector<int> sortVec = std::sort(_arr.begin(), _arr.end())
-	std::sort()
-	//sort vector
-	//set min span to max value in array
+	std::vector<int> sortVec = this->_arr;
+	std::sort(sortVec.begin(), sortVec.end());
+
+	unsigned int min = *std::max_element(sortVec.begin(), sortVec.end()) + 1;
+	for (size_t i = 0; i < sortVec.size(); i++)
+	{
+		auto tmp = sortVec[i] - sortVec[i - 1];
+		if (tmp < min)
+			min = tmp;
+	}
+	return (min);
 	//subtract the bigger one from the smaller one and check if it's bigger or smaller
 }
