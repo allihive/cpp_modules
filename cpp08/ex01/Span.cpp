@@ -51,7 +51,7 @@ unsigned int Span::shortestSpan()
 	unsigned int min = *std::max_element(sortVec.begin(), sortVec.end()) + 1;
 	for (size_t i = 0; i < sortVec.size(); i++)
 	{
-		auto tmp = sortVec[i] - sortVec[i - 1];
+		unsigned int tmp = sortVec[i] - sortVec[i - 1];
 		if (tmp < min)
 			min = tmp;
 	}
