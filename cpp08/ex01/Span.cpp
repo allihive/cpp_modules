@@ -29,16 +29,17 @@ unsigned int Span::getMaxN()
 void Span::addNumber(unsigned int N)
 {
 	unsigned int size = _arr.size();
-	if (size == this->_max)
+	if (size >= this->_max)
 	{
-		std::length_error("Maximum size of the vector reached");
+		throw std::range_error("Maximum size of the vector reached");
 	}
-	_arr.push_back(N);
+	else
+		_arr.push_back(N);
 }
 unsigned int Span::longestSpan()
 {
 	if (_arr.size() < 2)
-		std::length_error("Not enough elements added");
+		throw std::length_error("Not enough elements added");
 	unsigned int min = *std::min_element(_arr.begin(), _arr.end());
 	unsigned int max = *std::max_element(_arr.begin(), _arr.end());
 	return (max - min);
@@ -56,5 +57,16 @@ unsigned int Span::shortestSpan()
 			min = tmp;
 	}
 	return (min);
-	//subtract the bigger one from the smaller one and check if it's bigger or smaller
+}
+
+unsigned int	Span::getMinValue()
+{
+	unsigned int min = *std::min_element(_arr.begin(), _arr.end());
+	return min;
+}
+
+unsigned int	Span::getMaxValue()
+{
+	unsigned int max = *std::max_element(_arr.begin(), _arr.end());
+	return max;
 }

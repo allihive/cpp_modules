@@ -20,4 +20,6 @@ class Span {
 		unsigned int		shortestSpan();
 		unsigned int		longestSpan();
 		unsigned int		getMaxN();
+		unsigned int		getMinValue();
+		unsigned int		getMaxValue();
 };
