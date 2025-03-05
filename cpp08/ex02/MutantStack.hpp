@@ -2,18 +2,19 @@
 
 #include <iostream>
 #include <stack>
+// #include <list>
 
 template <typename T, typename Container = std::deque<T>>
 class MutantStack : public std::stack<T, Container> {
 	public:
-		MutantStack() : std::stack<T, container> {};
-		~MutantStack() : std::stack<T, container> {};
+		MutantStack() {}
+		~MutantStack() {}
 		MutantStack(const MutantStack& other) {
-			this* = other;
+			this = other;
 		};
 		MutantStack& operator=(const MutantStack& other) {
 			if (this != other)
-				std::stack<T, Container>::operator=(other);
+				std::stack<T, Container>::operator=(other); 
 			return *this;
 		};
 
