@@ -5,6 +5,7 @@
 #include <regex>
 #include <fstream>
 #include <ctime>
+#include <string>
 
 class Bitcoin {
 	public:

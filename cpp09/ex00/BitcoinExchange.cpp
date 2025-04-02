@@ -24,17 +24,22 @@ bool Bitcoin::parsecsv(std::string csvfile)
 			throw std::runtime_error("failed to open data.csv");
 		}
 		std::string line;
-		while (std::getline(csvdata, line)){
+		while (std::getline(csvdata, line))
+		{
 			std::stringstream ss(line);
-			std::string key;
+			std::string key, valueStr;
 			double value;
-			if (std::getline(ss, key, ',') && (ss >> value))
+			if (std::getline(ss, key, ',') && (ss >> valueStr))
+			{
+				value = std::stod(valueStr);
 				_data[key] = value;
+			}
 			else
+			{
 				std::cerr << "invalid format in data.csv" << std::endl;
+				return false;
+			}
 		}
-		
-
 	}
 	return false;
 }
