@@ -58,6 +58,9 @@
 		"cinttypes": "cpp",
 		"typeinfo": "cpp",
 		"variant": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"bitset": "cpp",
+		"regex": "cpp",
+		"fstream": "cpp"
 	}
 }

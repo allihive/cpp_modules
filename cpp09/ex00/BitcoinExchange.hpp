@@ -4,6 +4,7 @@
 #include <map>
 #include <regex>
 #include <fstream>
+#include <ctime>
 
 class Bitcoin {
 	public:
@@ -11,8 +12,8 @@ class Bitcoin {
 		~Bitcoin();
 		Bitcoin& operator=(const Bitcoin&);
 		Bitcoin (const Bitcoin&);
-		bool validateFiles(std::string);
-		
+		bool parsecsv(std::string);
+
 	private:
 		std::map<std::string, float> _data;
 };
