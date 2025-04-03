@@ -17,16 +17,15 @@ class Bitcoin {
 		Bitcoin (const Bitcoin&);
 
 		int oyear;
-		// int omonth;
-		// int oday;
 		int lyear;
-		// int lmonth;
-		// int lday;
 		
 		void parsecsv(std::ifstream&);
 		void parseInputFile(const std::string &file);
 		bool isValiDate(const std::string &date);
-		bool checkOldestAndLatest(int yr, int mo, int day);
+		bool checkOldestAndLatest(int yr);
+		double calculateExchange(std::string line, float value);
+		void printResult(int yr,int mo, int day, double result);
+
 	private:
 		std::map<std::string, float> _data;
 		std::string _oldestDate;

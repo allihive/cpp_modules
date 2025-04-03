@@ -67,7 +67,7 @@ void Bitcoin::parseInputFile(const std::string& file)
 			std::cout << "Error: bad input => " << matches[1] << std::endl;
 			continue;
 		}
-		float value = stod(matches[2]);
+		double value = stod(matches[2]);
 		if (value > 1000)
 		{
 			std::cout << "Error: too large a number." << std::endl;
@@ -85,14 +85,36 @@ void Bitcoin::parseInputFile(const std::string& file)
 			std::cout << "The year is not within our database" << std::endl;
 			return;
 		}
+		double result = calculateExchange(fullDate, value);
+		if (result == -1) {
+			std::cout << "Not able to calcuate exchange" << std::endl;
+			return;
+		}
+		printResult(yr, mo, day, result);
 	}
 }
 
-bool Bitcoin::checkOldestAndLatest(int yr, int mo, int day) 
+bool Bitcoin::checkOldestAndLatest(int yr) 
 {
 	if (yr > lyear || yr < oyear)
 		return false;
 	return true;
+}
+
+double Bitcoin::calculateExchange(std::string date, float value)
+{
+	std::string closestDate;
+	std::map<std::string, float>::iterator it = _data.lower_bound(date);
+	if (closestDate.empty())
+		return -1;
+	if (it == _data.end())
+		it--;
+	else if (it->first > date) {
+		if (it == _data.begin())
+			return -1;
+		it--;
+	} 
+	return	(it->second * value);
 }
 
 bool isValiDate(const std::string &date)
