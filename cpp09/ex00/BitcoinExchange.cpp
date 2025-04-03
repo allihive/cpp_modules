@@ -38,13 +38,20 @@ void Bitcoin::parsecsv(std::ifstream &csvfile)
 			std::cerr << "invalid file: " << e.what() << std::endl;
 		}
 	}
+	_oldestDate = _data.begin()->first;
+	oyear = std::stoi(_oldestDate.substr(0, 4));
+	_latestDate = _data.rbegin()->first;
+	lyear = std::stoi(_latestDate.substr(0, 4));
 }
 
 void Bitcoin::parseInputFile(const std::string& file)
 {
 	std::string line;
 	std::ifstream input(file);
-	std::regex pattern (R"(^\d{4}-\d{2}-\d{2})\s|\s-?\d*\.\d+$)");
+	std::smatch matches;
+	std::regex pattern(R"(^(\d{4}-\d{2}-\d{2})\s|\s(-?\d*\.\d+$))");
+	int yr, mo, day;
+	char dash1, dash2;
 
 	if (!input.is_open())
 		throw std::runtime_error("Failed to open file");
@@ -54,11 +61,38 @@ void Bitcoin::parseInputFile(const std::string& file)
 	std::getline(input, line);
 	while (std::getline(input, line))
 	{
-		std::stringstream ss(line);
-		std::string exchangeData;
-
+		if (!std::regex_match(line, matches, pattern)
+			|| !isValiDate(matches[1].str()))
+		{
+			std::cout << "Error: bad input => " << matches[1] << std::endl;
+			continue;
+		}
+		float value = stod(matches[2]);
+		if (value > 1000)
+		{
+			std::cout << "Error: too large a number." << std::endl;
+			continue; 
+		}
+		if (value < 0)
+		{
+			std::cout << "Error: not a positive number." << std::endl;
+			continue;
+		}
+		std::string fullDate = matches.str(1);
+		std::istringstream ss(fullDate);
+		ss >> yr >> dash1 >> mo >> dash2 >> day;
+		if (!checkOldestAndLatest){
+			std::cout << "The year is not within our database" << std::endl;
+			return;
+		}
 	}
+}
 
+bool Bitcoin::checkOldestAndLatest(int yr, int mo, int day) 
+{
+	if (yr > lyear || yr < oyear)
+		return false;
+	return true;
 }
 
 bool isValiDate(const std::string &date)
@@ -79,7 +113,6 @@ bool isValiDate(const std::string &date)
 	if (t == -1)
 		return false;
 	return (tm.tm_year == yr && tm.tm_mon == mo && tm.tm_mday == dy);
-
 }
 
 
