@@ -1,7 +1,7 @@
 NAME = btc
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++11
+CFLAGS = -Wall -Wextra -Werror -std=c++20
 
 SRCS = main.cpp
 

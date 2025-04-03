@@ -6,6 +6,8 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <sstream>
+#include <filesystem>
 
 class Bitcoin {
 	public:
@@ -13,8 +15,11 @@ class Bitcoin {
 		~Bitcoin();
 		Bitcoin& operator=(const Bitcoin&);
 		Bitcoin (const Bitcoin&);
-		bool parsecsv(std::string);
-
+		void parsecsv(std::ifstream&);
+		void parseInputFile(const std::string &file);
+		bool isValiDate(const std::string &date);
 	private:
 		std::map<std::string, float> _data;
+		std::string _oldestDate;
+		std::string _latestDate;
 };
