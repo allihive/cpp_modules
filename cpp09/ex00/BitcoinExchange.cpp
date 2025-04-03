@@ -13,7 +13,7 @@ Bitcoin::~Bitcoin() {}
 
 Bitcoin &Bitcoin::operator=(const Bitcoin &other) {
 	if (this != &other)
-		other._data;
+		_data = other._data;
 	return *this;
 }
 
@@ -81,7 +81,7 @@ void Bitcoin::parseInputFile(const std::string& file)
 		std::string fullDate = matches.str(1);
 		std::istringstream ss(fullDate);
 		ss >> yr >> dash1 >> mo >> dash2 >> day;
-		if (!checkOldestAndLatest){
+		if (!checkOldestAndLatest(yr)){
 			std::cout << "The year is not within our database" << std::endl;
 			return;
 		}
