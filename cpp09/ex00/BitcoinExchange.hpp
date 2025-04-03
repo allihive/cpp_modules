@@ -24,7 +24,7 @@ class Bitcoin {
 		bool isValiDate(const std::string &date);
 		bool checkOldestAndLatest(int yr);
 		double calculateExchange(std::string line, float value);
-		void printResult(int yr,int mo, int day, double result);
+		// void printResult(std::string date, double value, double result);
 
 	private:
 		std::map<std::string, float> _data;

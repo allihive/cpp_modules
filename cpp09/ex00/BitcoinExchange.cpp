@@ -90,7 +90,7 @@ void Bitcoin::parseInputFile(const std::string& file)
 			std::cout << "Not able to calcuate exchange" << std::endl;
 			return;
 		}
-		printResult(yr, mo, day, result);
+		std::cout << fullDate << " => " << value << " = " << result << std::endl;
 	}
 }
 
@@ -100,6 +100,7 @@ bool Bitcoin::checkOldestAndLatest(int yr)
 		return false;
 	return true;
 }
+
 
 double Bitcoin::calculateExchange(std::string date, float value)
 {
