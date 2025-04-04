@@ -45,14 +45,13 @@ void Bitcoin::parsecsv(std::ifstream &csvfile)
 }
 bool Bitcoin::isValiDate(const std::string &date)
 {
-	std::cout << "entered is validate" << std::endl;
 	std::tm tm{}; //zero out the tm structure for garbage dates
 	std::istringstream ss(date);
 
-	char dash1;
+	char dash1, dash2;
 	int yr, mo, dy;
 
-	if (!(ss >> yr >> dash1 >> mo >> dash1 >> dy) || dash1 != '-')
+	if (!(ss >> yr >> dash1 >> mo >> dash2 >> dy) || (dash1 != '-' && dash2 != '-'))
 		return false;
 	tm.tm_year = yr - 1900; //tm starts at 1900
 	tm.tm_mon = mo - 1;
@@ -61,7 +60,11 @@ bool Bitcoin::isValiDate(const std::string &date)
 	std::time_t t = std::mktime(&tm);
 	if (t == -1)
 		return false;
-	return (tm.tm_year == yr && tm.tm_mon == mo && tm.tm_mday == dy);
+	// std::cout << "tm year: " << tm.tm_year << " yr: " << yr << std::endl;
+	// std::cout << "tm month: " << tm.tm_mon << " mo: " << mo <<std::endl;
+	// std::cout << "tm day: " << tm.tm_mday << "day: " << dy << std::endl;
+
+	return (true);
 }
 
 void Bitcoin::parseInputFile(const std::string& file)
@@ -84,13 +87,10 @@ void Bitcoin::parseInputFile(const std::string& file)
 	std::getline(input, line);
 	while (std::getline(input, line))
 	{
-		// if (matches.empty())
-		// 	continue;
-		std::cout << "line: " << line << std::endl;
 		if (!std::regex_match(line, matches, pattern)
 			|| isValiDate(matches[1].str()) == false)
 		{
-			std::cout << "Error: bad input => " << matches.str(1) << std::endl;
+			std::cout << "Error: bad input => " << matches[0].str() << std::endl;
 			continue;
 		}
 		double value = stod(matches[2]);
@@ -131,9 +131,10 @@ bool Bitcoin::checkOldestAndLatest(int yr)
 double Bitcoin::calculateExchange(std::string date, float value)
 {
 	std::string closestDate;
+
 	std::map<std::string, float>::iterator it = _data.lower_bound(date);
-	if (closestDate.empty())
-		return -1;
+	// if (closestDate.empty())
+	// 	return -1;
 	if (it == _data.end())
 		it--;
 	else if (it->first > date) {
