@@ -13,4 +13,5 @@ class RPN {
 		RPN& operator=(const RPN &other);
 
 		void calculator(const std::string& );
+		bool checkStr(const std::string &);
 };
