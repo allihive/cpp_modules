@@ -15,9 +15,9 @@ RPN& RPN::operator=(const RPN& other) {
 	}
 	return *this;
 }
+
 bool RPN::checkStr(const std::string &str)
 {
-	int operators = 0;
 	int stackSize = 0;
 	if (str.length() < 2)
 		return false;
@@ -25,25 +25,30 @@ bool RPN::checkStr(const std::string &str)
 	std::string token;
 	while (ss >> token)
 	{
-		if (isdigit(stoi(token)))
-		{
+		try {
+			int num = std::stoi(token);
+			if (num < -9 || num > 9) {
+				std::cerr << "Number should be between -9 and 9" << std::endl;
+				return false;
+			}
 			stackSize++;
-			if (token.length() != 1)
-			{
-				std::cerr << "Number should be between -9 to 9" << std::endl;
-				return false;
-			}
 		}
-		else if (token == "+" || token == "-" || token == "*" || token == "/")
+		catch (const std::invalid_argument& e)
 		{
-			operators++;
-			if (stackSize < 2)
+			if (token == "+" || token == "-" || token == "*" || token == "/")
 			{
-				std::cerr << "Need minimum 2 numbers in stack before an operator"
-					<< std::endl;
+				if (stackSize < 2)
+				{
+					std::cerr << "Need minimum 2 numbers in stack before an operator"
+						<< std::endl;
+					return false;
+				}
+			stackSize--;
+			}
+			else {
+				std::cerr << "Error" << std::endl;
 				return false;
 			}
-			stackSize--;
 		}
 	}
 	if (stackSize != 1) {
@@ -92,4 +97,5 @@ void RPN::calculator(const std::string &str)
 			_stack.push(result);
 		}
 	}
+	std::cout << _stack.top() << std::endl;
 }
