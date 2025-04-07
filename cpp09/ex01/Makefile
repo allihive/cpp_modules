@@ -3,7 +3,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++20
 
-SRCS = main.cpp BitcoinExchange.cpp
+SRCS = main.cpp RPN.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
