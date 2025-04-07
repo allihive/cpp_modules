@@ -60,10 +60,6 @@ bool Bitcoin::isValiDate(const std::string &date)
 	std::time_t t = std::mktime(&tm);
 	if (t == -1)
 		return false;
-	// std::cout << "tm year: " << tm.tm_year << " yr: " << yr << std::endl;
-	// std::cout << "tm month: " << tm.tm_mon << " mo: " << mo <<std::endl;
-	// std::cout << "tm day: " << tm.tm_mday << "day: " << dy << std::endl;
-
 	return (true);
 }
 
@@ -72,7 +68,6 @@ void Bitcoin::parseInputFile(const std::string& file)
 	std::string line;
 	std::ifstream input(file);
 	std::smatch matches;
-	// std::regex pattern(R"(^(\d{4}-\d{2}-\d{2})\s|\s(-?\d*\.\d+$))");
 	std::regex pattern(R"(^(\d{4}-\d{2}-\d{2})\s\|\s(-?\d+(\.\d+)?)$)");
 
 
@@ -90,7 +85,7 @@ void Bitcoin::parseInputFile(const std::string& file)
 		if (!std::regex_match(line, matches, pattern)
 			|| isValiDate(matches[1].str()) == false)
 		{
-			std::cout << "Error: bad input => " << matches[0].str() << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 		double value = stod(matches[2]);
