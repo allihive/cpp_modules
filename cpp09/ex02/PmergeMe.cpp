@@ -5,15 +5,15 @@ PmergeMe:: PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) {
-	_dequeSort = other._dequeSort;
-	_vectorSort = other._vectorSort;
+	_dequeList = other._dequeList;
+	_vectorList = other._vectorList;
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
 	if (this != &other)
 	{
-		_dequeSort = other._dequeSort;
-		_vectorSort = other._vectorSort;
+		_dequeList = other._dequeList;
+		_vectorList = other._vectorList;
 	}
 	return (*this);
 }
@@ -30,17 +30,18 @@ bool PmergeMe::convertNumbers(const std::string &arg) {
 	try {
 		int num = stoi(arg);
 
-		if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
-		{
-			std::cerr << "Number too large" << std::endl;
-			return false;
-		}
-		_dequeSort.push_back(num);
-		_vectorSort.push_back(num);
+		_dequeList.push_back(num);
+		_vectorList.push_back(num);
+		return true;
 	}
 	catch (std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 		return false;
 	}
+	return true;
+}
+
+void PmergeMe::sortVector() {
+
 }

@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 		{
 			if (pmerge.convertNumbers(argv[i]) == false)
 				return 1;
-			
 		}
+		
 	}
 }

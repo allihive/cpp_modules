@@ -7,8 +7,8 @@
 
 class PmergeMe {
 	private:
-		std::vector<int> _vectorSort;
-		std::deque<int> _dequeSort;
+		std::vector<int> _vectorList;
+		std::deque<int> _dequeList;
 	public:
 		PmergeMe();
 		~PmergeMe();
@@ -18,4 +18,6 @@ class PmergeMe {
 		void sortVector();
 		void sortDeque();
 		bool convertNumbers(const std::string &);
+		void getTime()
+
 };
