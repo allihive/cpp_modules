@@ -2,6 +2,7 @@
 #include <stack>
 #include <iostream>
 #include <sstream>
+#include <limits>
 
 class RPN {
 	private:

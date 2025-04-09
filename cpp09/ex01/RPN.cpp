@@ -89,7 +89,7 @@ void RPN::calculator(const std::string &str)
 				result = second - first;
 			else if (str[i] == '*')
 				result = second * first;
-			if (result > INT_MAX || result < INT_MIN)
+			if (result > std::numeric_limits<int>::max() || result < std::numeric_limits<int>::min())
 			{
 				std::cerr << "Resulting number is overflowing" << std::endl;
 				return;
