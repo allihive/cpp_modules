@@ -18,6 +18,23 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
 	return (*this);
 }
 
+bool PmergeMe::duplicatesVec(std::vector<int> &vec, int num)
+{
+	for (const auto n : vec) {
+		if (num == n)
+			return false;
+	}
+	return true;
+}
+bool PmergeMe::duplicatesDeq(std::deque<int> &deq, int num)
+{
+	for (const auto n : deq) {
+		if (num == n)
+			return false;
+	}
+	return true;
+}
+
 bool PmergeMe::convertNumbers(const std::string &arg) {
 	int i = 0;
 	while (i < arg.length()) {
@@ -30,7 +47,10 @@ bool PmergeMe::convertNumbers(const std::string &arg) {
 	try {
 		int num = stoi(arg);
 
-		//check for duplicates here
+		if (duplicatesVec(_vectorList, num) || duplicatesDeq(_dequeList, num)) {
+			std::cerr << "We do not allow duplicates here" << std::endl;
+			return false;
+		}
 		_dequeList.push_back(num);
 		_vectorList.push_back(num);
 		return true;
@@ -61,8 +81,9 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 
 	if (vec.size() <= 1)
 		return ;
+
 	std::vector<std::pair<int, int>> pairs; //create pairs for vector
-	for (size_t i = 0; i < vec.size() / 2; i += 2)
+	for (size_t i = 0; i < vec.size() / 2; i += 2) //push the pair into the pairs vector will need to increase the loop by 2
 	{
 		if (vec[i] < vec[i + 1])
 			std::swap(vec[i], vec[i + 1]);
@@ -73,10 +94,13 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 		oddNumber = true;
 		int leftOver = vec.back();
 	}
-	
-	//push the pair into the pairs vector will need to increase the loop by 2
-	//create a vector for large numbers (a) 
-	//call the vec algo again
+
+	std::vector<int> a1Numbers;
+	for (const auto& a1 : pairs) {
+		a1Numbers.push_back(a1.first);
+	}
+
+	sortVector(a1Numbers); //Recursive on the a1 numbers
 	//insert using jacobsthal
 	//check the leftover
 		//find the position to insert
