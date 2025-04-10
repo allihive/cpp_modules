@@ -10,7 +10,6 @@ class PmergeMe {
 	private:
 		std::vector<int> _vectorList;
 		std::deque<int> _dequeList;
-		std::vector<int> _jacobSeq;
 
 	public:
 		PmergeMe();
@@ -23,7 +22,7 @@ class PmergeMe {
 		bool convertNumbers(const std::string &);
 		bool duplicatesVec(std::vector<int> &vec, int num);
 		bool duplicatesDeq(std::deque<int> &deq, int num);
-		// std::chrono::duration<double, std::micro> timeVector();
-		// std::chrono::duration<double, std::micro> timeDeque();
 
+		void insertJacobsthal(std::vector<int> main, std::vector<std::pair<int, int>> pairs);
+		
 };

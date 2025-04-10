@@ -63,9 +63,39 @@ bool PmergeMe::convertNumbers(const std::string &arg) {
 	return true;
 }
 
-//write insertjacobsthal numbers
-//create a vector of the sequence to determine the index of numbers
-//create the sequence by checking the amount of pairs there are
+std::vector<int> createJacobSequence(int pairSize) {
+	std::vector<int> seq;
+	int first = 1;
+	int second = 3;
+	seq.push_back(first);
+	seq.push_back(second);
+	for (size_t i = 2; i < pairSize; i++) {
+		seq[i] = seq[i - 1] + seq[i - 2] * 2;
+	}
+	return seq;
+}
+
+void PmergeMe::insertJacobsthal(std::vector<int> vec, std::vector<std::pair<int, int>> pairs)
+{
+	int pairSize = pairs.size();
+	if (pairSize < 2)
+		return;
+	
+	//create a vector of the sequence to determine the index of numbers
+	std::vector<int> jacobseq = createJacobSequence(pairSize);
+	std::vector<int> vecModify  = vec; //copy to keep original order to vec
+
+	int bNum;
+	int aNum = vec[0];
+	for (const auto& p : pairs) {
+		if (aNum == p.first)
+			bNum = p.second;
+	}
+	vec.insert(vec.begin(), bNum);
+}
+
+
+
 //find the first pair in the main vector (b1) and insert
 	//will insert it at the first place because it's naturally smaller
 //go through the sequence size
@@ -95,15 +125,17 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 		int leftOver = vec.back();
 	}
 
-	std::vector<int> a1Numbers;
+	std::vector<int> aNum;
 	for (const auto& a1 : pairs) {
-		a1Numbers.push_back(a1.first);
+		aNum.push_back(a1.first);
 	}
 
-	sortVector(a1Numbers); //Recursive on the a1 numbers
+	sortVector(aNum); //Recursive on the a1 numbers
 	//insert using jacobsthal
-	//check the leftover
+	if (oddNumber == true) //check the leftover
+	{
 		//find the position to insert
+	}
 	//main vector will now be large numbers
 
 }
