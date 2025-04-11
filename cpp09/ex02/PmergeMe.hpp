@@ -23,6 +23,6 @@ class PmergeMe {
 		bool duplicatesVec(std::vector<int> &vec, int num);
 		bool duplicatesDeq(std::deque<int> &deq, int num);
 
-		void insertJacobsthal(std::vector<int> main, std::vector<std::pair<int, int>> pairs);
+		void insertJacobsthalVec(std::vector<int> main, std::vector<std::pair<int, int>> pairs);
 		
 };
