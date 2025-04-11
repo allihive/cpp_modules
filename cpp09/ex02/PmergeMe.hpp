@@ -24,5 +24,8 @@ class PmergeMe {
 		bool duplicatesDeq(std::deque<int> &deq, int num);
 
 		void insertJacobsthalVec(std::vector<int> main, std::vector<std::pair<int, int>> pairs);
-		
+		std::vector<int> &getVector();
+		std::deque<int> &getDeque();
 };
+
+void printVec(std::vector<int> & vec);
