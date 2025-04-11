@@ -20,6 +20,5 @@ int main(int argc, char **argv)
 		printVec(pmerge.getVector());
 		std::cout << "Time to process a range of " << argc - 1
 			<< " with Vector : " << durationVec.count() << " us" << std::endl;
-
 	}
 }

@@ -82,55 +82,54 @@ std::vector<int> createJacobSequence(int pairSize) {
 	return seq;
 }
 
-void PmergeMe::insertJacobsthalVec(std::vector<int> vec, std::vector<std::pair<int, int>> pairs)
+void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<int, int>> pairs)
 {
 	int pairSize = pairs.size();
-	// if (pairSize < 2)
-	// 	return;
+	if (pairSize < 2)
+		return;
 	
 	//create a vector of the sequence to determine the index of numbers
 	std::vector<int> jacobseq = createJacobSequence(pairSize);
 	std::vector<int> vecOrder  = vec; //copy to keep original order to vec
 
-	std::cout << "jacobs: " << std::endl;
-	printVec(jacobseq);
-	
 	int bNum;
 	int aNum = vec[0];
 	for (const auto& p : pairs) {
-		if (aNum == p.first)
+		if (aNum == p.first) {
 			bNum = p.second;
+			std::cout << "bNum: " << bNum << std::endl;
+			break;
+		}
 	}
-	vec.insert(vec.begin(), bNum);
-	std::cout << "Vec order: " << std::endl;
-	printVec(vec);
+	vec.insert(vec.begin(), bNum); // 3 elements in the vec
 	for (size_t i = 1; i < jacobseq.size(); i++)
 	{
-		int last = jacobseq[i - 1];
-		int next = jacobseq[i];
+		size_t last = jacobseq[i - 1];
+		size_t current = jacobseq[i];
 
-		for (int seq = next; last > seq; seq--) //> !=
+		for (size_t seq = current; last <= seq && seq >= 0; seq--) //> !=
 		{
+			if (seq > pairs.size())
+				continue;
+
 			int a = vecOrder[seq];
-			int b;
+			int b = -1;
 			for (const auto &p : pairs) {
 				if (a == p.first)
+				{
 					b = p.second;
+					break;
+					std::cout << "p.second: " << p.second << std::endl;
+					std::cout << b << std::endl;
+				}
 			}
 			auto pos = std::lower_bound(vec.begin(), vec.end(), b); //inserting b into a sorted a stack
-			vec.insert(pos, b);
+			if (b != -1)
+				vec.insert(pos, b);
 		}
 	}
 }
 
-//find the first pair in the main vector (b1) and insert
-	//will insert it at the first place because it's naturally smaller
-//go through the sequence size
-	//sequence i (ex. 5)
-	//sequence i-1 (the last number that was in the sequence) (ex. 3)
-	//find the pair, based off index of the first number (like a map)
-	//find the position to insert using lower bound?
-	//then insert
 
 void PmergeMe::sortVector(std::vector<int> &vec) {
 	
@@ -152,7 +151,11 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 			std::swap(vec[i], vec[i + 1]);
 		pairs.emplace_back(vec[i], vec[i + 1]); //now a1 is bigger and placed into the vector of pairs
 	}
-
+	std::cout << "printing pairs: ";
+	for (const auto& p : pairs) {
+			std::cout << "(" << p.first << ", " << p.second << ") ";
+		}
+	std::cout << std::endl;
 	if (pairs.size() == 1) {
 		if (vec.size() == 2) {
  			if (vec[0] > vec[1])
@@ -163,12 +166,10 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 	for (const auto& a1 : pairs) {
 		aNum.push_back(a1.first);
 	}
-	sortVector(aNum); //Recursive on the a1 numbers
-	std::cout << "aNum Vector: " << std::endl;
-	printVec(aNum);
 	insertJacobsthalVec(aNum, pairs);
-	std::cout << "aNum Vector after jacobs: " << std::endl;
+	std::cout << "aNum Vector after jacobs: ";
 	printVec(aNum);
+	std::cout << std::endl;
 	if (oddNumber == true) //check the leftover
 	{
 		auto pos = std::lower_bound(aNum.begin(), aNum.end(), leftOver);
