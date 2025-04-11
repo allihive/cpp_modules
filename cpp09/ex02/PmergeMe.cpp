@@ -90,7 +90,7 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 		return;
 	
 	//create a vector of the sequence to determine the index of numbers
-	std::vector<int> jacobseq = createJacobSequence(pairSize);
+	std::vector<int> jacobseq = createJacobSequenceVec(pairSize);
 	std::vector<int> vecOrder  = vec; //copy to keep original order to vec
 
 	int bNum;
