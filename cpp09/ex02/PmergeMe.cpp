@@ -39,6 +39,7 @@ void printVec(std::vector<int> &vec) {
 	for (auto const &num : vec) {
 		std::cout << num << " ";
 	}
+	std::cout << std::endl;
 }
 
 bool PmergeMe::convertNumbers(const std::string &arg) {
@@ -97,7 +98,6 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 	for (const auto& p : pairs) {
 		if (aNum == p.first) {
 			bNum = p.second;
-			std::cout << "bNum: " << bNum << std::endl;
 			break;
 		}
 	}
@@ -119,8 +119,6 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 				{
 					b = p.second;
 					break;
-					std::cout << "p.second: " << p.second << std::endl;
-					std::cout << b << std::endl;
 				}
 			}
 			auto pos = std::lower_bound(vec.begin(), vec.end(), b); //inserting b into a sorted a stack
@@ -151,15 +149,17 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 			std::swap(vec[i], vec[i + 1]);
 		pairs.emplace_back(vec[i], vec[i + 1]); //now a1 is bigger and placed into the vector of pairs
 	}
-	std::cout << "printing pairs: ";
-	for (const auto& p : pairs) {
-			std::cout << "(" << p.first << ", " << p.second << ") ";
-		}
-	std::cout << std::endl;
 	if (pairs.size() == 1) {
-		if (vec.size() == 2) {
- 			if (vec[0] > vec[1])
+		if (vec.size() < 4) {
+ 			if (vec[0] > vec[1]) {
 				std::swap(vec[0], vec[1]);
+				if (oddNumber == true) {
+					vec.pop_back();
+					auto pos = std::lower_bound(vec.begin(), vec.end(), leftOver);
+					vec.insert(pos, leftOver);
+				return;
+				}
+			}
 		}
 	}
 	std::vector<int> aNum;
@@ -167,16 +167,12 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 		aNum.push_back(a1.first);
 	}
 	insertJacobsthalVec(aNum, pairs);
-	std::cout << "aNum Vector after jacobs: ";
-	printVec(aNum);
-	std::cout << std::endl;
-	if (oddNumber == true) //check the leftover
+	if (oddNumber == true ) //check the leftover
 	{
 		auto pos = std::lower_bound(aNum.begin(), aNum.end(), leftOver);
 		aNum.insert(pos, leftOver);
 	}
 	vec = aNum; //copy the sorted vector into the main vector
-
 }
 
 
