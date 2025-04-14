@@ -39,9 +39,14 @@ void Bitcoin::parsecsv(std::ifstream &csvfile)
 		}
 	}
 	_oldestDate = _data.begin()->first;
-	oyear = std::stoi(_oldestDate.substr(0, 4));
+	oYear = std::stoi(_oldestDate.substr(0, 4));
+	oMonth = std::stoi(_oldestDate.substr(5, 7));
+	oDay = std::stoi(_oldestDate.substr(8, 10));
 	_latestDate = _data.rbegin()->first;
-	lyear = std::stoi(_latestDate.substr(0, 4));
+	lYear = std::stoi(_latestDate.substr(0, 4));
+	lMonth = std::stoi(_latestDate.substr(5, 7));
+	lDay = std::stoi(_latestDate.substr(8, 10));
+
 }
 bool Bitcoin::isValiDate(const std::string &date)
 {
@@ -60,6 +65,10 @@ bool Bitcoin::isValiDate(const std::string &date)
 	std::time_t t = std::mktime(&tm);
 	if (t == -1)
 		return false;
+	if (!checkDate(yr, mo, dy)) {
+		std::cerr << date << " date is not within our database" << std::endl;
+		return false;
+	}
 	return (true);
 }
 
@@ -69,10 +78,6 @@ void Bitcoin::parseInputFile(const std::string& file)
 	std::ifstream input(file);
 	std::smatch matches;
 	std::regex pattern(R"(^(\d{4}-\d{2}-\d{2})\s\|\s(-?\d+(\.\d+)?)$)");
-
-
-	int yr, mo, day;
-	char dash1, dash2;
 
 	if (!input.is_open())
 		throw std::runtime_error("Failed to open file");
@@ -101,11 +106,6 @@ void Bitcoin::parseInputFile(const std::string& file)
 		}
 		std::string fullDate = matches.str(1);
 		std::istringstream ss(fullDate);
-		ss >> yr >> dash1 >> mo >> dash2 >> day;
-		if (!checkOldestAndLatest(yr)){
-			std::cout << "The year is not within our database" << std::endl;
-			return;
-		}
 		double result = calculateExchange(fullDate, value);
 		if (result == -1) {
 			std::cout << "Not able to calcuate exchange" << std::endl;
@@ -115,10 +115,35 @@ void Bitcoin::parseInputFile(const std::string& file)
 	}
 }
 
-bool Bitcoin::checkOldestAndLatest(int yr) 
+bool Bitcoin::checkDate(int yr, int mo, int day) 
 {
-	if (yr > lyear || yr < oyear)
+	if (yr > lYear || yr < oYear)
 		return false;
+	else if (yr == oYear) {
+		if (mo < oMonth )
+			return false;
+		else if (mo == oMonth) {
+			if (day < oDay) {
+				return false;
+			}
+		}
+		return true;
+	}
+	else if (yr == lYear) {
+		if (mo > lMonth)
+		{
+			
+			std::cout << "exited at lmonth: " << lMonth << std::endl;
+			return false;
+		}
+		else if (mo == lMonth) {
+			if (day > lDay) {
+				std::cout << "exited at lday" << std::endl;
+				return false;
+			}
+		}
+		return true;
+	}
 	return true;
 }
 
@@ -128,8 +153,6 @@ double Bitcoin::calculateExchange(std::string date, float value)
 	std::string closestDate;
 
 	std::map<std::string, float>::iterator it = _data.lower_bound(date);
-	// if (closestDate.empty())
-	// 	return -1;
 	if (it == _data.end())
 		it--;
 	else if (it->first > date) {
