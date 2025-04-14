@@ -79,7 +79,7 @@ void RPN::calculator(const std::string &str)
 			_stack.push(n);
 			}
 		}
-		else if (str[i] == '-'){
+		else if (str[i] == '-' && isdigit(str[i + 1])){
 			negative = true;
 			continue;
 		}
