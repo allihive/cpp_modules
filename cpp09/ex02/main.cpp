@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 		auto startVec = std::chrono::high_resolution_clock::now();
 		pmerge.sortVector(pmerge.getVector());
 		auto endVec = std::chrono::high_resolution_clock::now();
-		auto durationVec = std::chrono::duration_cast<std::chrono::microseconds>(endVec - startVec);
+		auto durationVec = std::chrono::duration<double, std::micro>(endVec - startVec);
 
 		std::cout << "After Vec: ";
 		printVec(pmerge.getVector());
@@ -24,14 +24,14 @@ int main(int argc, char **argv)
 		auto startDeq = std::chrono::high_resolution_clock::now();
 		pmerge.sortDeque(pmerge.getDeque());
 		auto endDeq = std::chrono::high_resolution_clock::now();
-		auto durationDeq = std::chrono::duration_cast<std::chrono::microseconds>(endDeq - startDeq);
+		auto durationDeq = std::chrono::duration<double, std::micro>(endDeq - startDeq);
 		
 		std::cout << "After Deq: ";
 		printDeq(pmerge.getDeque());
 
 		std::cout << "Time to process a range of " << argc - 1
-			<< " with Vector : " << durationVec.count() << " us" << std::endl;
+			<< " with Vector : " << std::fixed << std::setprecision(5) << durationVec.count() << " us" << std::endl;
 		std::cout << "Time to process a range of " << argc - 1
-			<< " with Deque : " << durationDeq.count() << " us" << std::endl;
+			<< " with Deque : " << std::fixed << std::setprecision(5) << durationDeq.count() << " us" << std::endl;
 	}
 }
