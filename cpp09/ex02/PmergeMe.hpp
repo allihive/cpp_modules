@@ -30,3 +30,4 @@ class PmergeMe {
 };
 
 void printVec(std::vector<int> & vec);
+void printDeq(std::deque<int> &deq);

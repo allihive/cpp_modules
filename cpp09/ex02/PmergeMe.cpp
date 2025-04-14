@@ -42,6 +42,13 @@ void printVec(std::vector<int> &vec) {
 	std::cout << std::endl;
 }
 
+void printDeq(std::deque<int> &deq) {
+	for (auto const &num : deq) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+}
+
 bool PmergeMe::convertNumbers(const std::string &arg) {
 	size_t i = 0;
 	while (i < arg.length()) {
@@ -70,14 +77,16 @@ bool PmergeMe::convertNumbers(const std::string &arg) {
 	return true;
 }
 
-std::vector<int> createJacobSequenceVec(int pairSize) {
-	std::vector<int> seq;
-	int first = 1;
-	int second = 3;
+std::vector<double> createJacobSequenceVec(int pairSize) {
+	std::vector<double> seq;
+	double first = 1;
+	double second = 3;
 	seq.push_back(first);
 	seq.push_back(second);
-	for (int i = 2; i < pairSize; i++) {
-		int nextValue = seq[i - 1] + seq[i - 2] * 2;
+
+	double nextValue = 3;
+	for (double i = 2; nextValue < pairSize; i++) {
+		nextValue = seq[i - 1] + seq[i - 2] * 2;
         seq.push_back(nextValue);
 	}
 	return seq;
@@ -90,9 +99,9 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 		return;
 	
 	//create a vector of the sequence to determine the index of numbers
-	std::vector<int> jacobseq = createJacobSequenceVec(pairSize);
+	std::vector<double> jacobseq = createJacobSequenceVec(pairSize);
 	std::vector<int> vecOrder  = vec; //copy to keep original order to vec
-
+	
 	int bNum;
 	int aNum = vec[0];
 	for (const auto& p : pairs) {
@@ -102,6 +111,7 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 		}
 	}
 	vec.insert(vec.begin(), bNum); // 3 elements in the vec
+	// std::cout << "jacobseq size" << jacobseq.size() << std::endl;
 	for (size_t i = 1; i < jacobseq.size(); i++)
 	{
 		size_t last = jacobseq[i - 1];
@@ -136,7 +146,6 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 
 	if (vec.size() <= 1)
 		return ;
-
 	std::vector<std::pair<int, int>> pairs; //create pairs for vector
 	if (vec.size() % 2 != 0)
 	{
@@ -177,15 +186,15 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 
 
 /*DEQUE*/
-
-std::deque<int> createJacobSequenceDeq(int pairSize) {
-	std::deque<int> seq;
-	int first = 1;
-	int second = 3;
+std::deque<double> createJacobSequenceDeq(int pairSize) {
+	std::deque<double> seq;
+	double first = 1;
+	double second = 3;
 	seq.push_back(first);
 	seq.push_back(second);
-	for (int i = 2; i < pairSize; i++) {
-		int nextValue = seq[i - 1] + seq[i - 2] * 2;
+	double nextValue = 3;
+	for (double i = 2; nextValue < pairSize; i++) {
+		nextValue = seq[i - 1] + seq[i - 2] * 2;
         seq.push_back(nextValue);
 	}
 	return seq;
@@ -207,7 +216,7 @@ void PmergeMe::insertJacobsthalDeq(std::deque<int> &deq, std::deque<std::pair<in
 		return;
 	
 	//create a deque of the sequence to determine the index of numbers
-	std::deque<int> jacobseq = createJacobSequenceDeq(pairSize);
+	std::deque<double> jacobseq = createJacobSequenceDeq(pairSize);
 	std::deque<int> deqOrder  = deq; //copy to keep original order to deq
 
 	int bNum;
@@ -289,5 +298,5 @@ void PmergeMe::sortDeque(std::deque<int> &deq) {
 		auto pos = std::lower_bound(aNum.begin(), aNum.end(), leftOver);
 		aNum.insert(pos, leftOver);
 	}
-	deq = aNum; //copy the sorted deque into the main vector
+	deq = aNum; //copy the sorted deque into the main deque
 }
