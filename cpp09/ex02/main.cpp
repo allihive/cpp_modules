@@ -4,16 +4,15 @@ int main(int argc, char **argv)
 {
 	if (argc > 2) {
 		PmergeMe pmerge;
+
+		auto startVec = std::chrono::high_resolution_clock::now();
 		for (int i = 1; i < argc; i++)
 		{
-			if (pmerge.convertNumbers(argv[i]) == false)
+			if (pmerge.convertNumbersVec(argv[i]) == false)
 				return 1;
 		}
 		std::cout << "Before: ";
 		printVec(pmerge.getVector());
-		
-
-		auto startVec = std::chrono::high_resolution_clock::now();
 		pmerge.sortVector(pmerge.getVector());
 		auto endVec = std::chrono::high_resolution_clock::now();
 		auto durationVec = std::chrono::duration<double, std::micro>(endVec - startVec);
@@ -22,6 +21,13 @@ int main(int argc, char **argv)
 		printVec(pmerge.getVector());
 
 		auto startDeq = std::chrono::high_resolution_clock::now();
+		for (int i = 1; i < argc; i++)
+		{
+			if (pmerge.convertNumbersDeq(argv[i]) == false)
+				return 1;
+		}
+		std::cout << "Before: ";
+		printDeq(pmerge.getDeque());
 		pmerge.sortDeque(pmerge.getDeque());
 		auto endDeq = std::chrono::high_resolution_clock::now();
 		auto durationDeq = std::chrono::duration<double, std::micro>(endDeq - startDeq);

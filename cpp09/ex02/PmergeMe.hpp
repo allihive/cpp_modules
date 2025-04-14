@@ -21,7 +21,8 @@ class PmergeMe {
 
 		void sortVector(std::vector<int> &vec);
 		void sortDeque(std::deque<int> &deq);
-		bool convertNumbers(const std::string &);
+		bool convertNumbersVec(const std::string &);
+		bool convertNumbersDeq(const std::string &);
 		bool duplicatesVec(std::vector<int> &vec, int num);
 		bool duplicatesDeq(std::deque<int> &deq, int num);
 

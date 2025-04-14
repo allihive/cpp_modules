@@ -49,7 +49,7 @@ void printDeq(std::deque<int> &deq) {
 	std::cout << std::endl;
 }
 
-bool PmergeMe::convertNumbers(const std::string &arg) {
+bool PmergeMe::convertNumbersVec(const std::string &arg) {
 	size_t i = 0;
 	while (i < arg.length()) {
 		if (!isdigit(arg[i])) {
@@ -61,12 +61,38 @@ bool PmergeMe::convertNumbers(const std::string &arg) {
 	try {
 		int num = stoi(arg);
 
-		if (!duplicatesVec(_vectorList, num) || !duplicatesDeq(_dequeList, num)) {
+		if (!duplicatesVec(_vectorList, num)) {
+			std::cerr << "We do not allow duplicates here" << std::endl;
+			return false;
+		}
+		_vectorList.push_back(num);
+		return true;
+	}
+	catch (std::exception const &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool PmergeMe::convertNumbersDeq(const std::string &arg) {
+	size_t i = 0;
+	while (i < arg.length()) {
+		if (!isdigit(arg[i])) {
+			std::cerr << "Positive numbers only!" << std::endl;
+			return false;
+		}
+		i++;
+	}
+	try {
+		int num = stoi(arg);
+
+		if (!duplicatesDeq(_dequeList, num)) {
 			std::cerr << "We do not allow duplicates here" << std::endl;
 			return false;
 		}
 		_dequeList.push_back(num);
-		_vectorList.push_back(num);
 		return true;
 	}
 	catch (std::exception const &e)
@@ -272,7 +298,7 @@ void PmergeMe::sortDeque(std::deque<int> &deq) {
 	}
 	sortDeque(aNum);
 	insertJacobsthalDeq(aNum, pairs);
-	if (oddNumber == true ) //check the leftover
+	if (oddNumber == true) //check the leftover
 	{
 		auto pos = std::lower_bound(aNum.begin(), aNum.end(), leftOver);
 		aNum.insert(pos, leftOver);
