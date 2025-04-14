@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 		auto endVec = std::chrono::high_resolution_clock::now();
 		auto durationVec = std::chrono::duration<double, std::micro>(endVec - startVec);
 
-		std::cout << "After Vec: ";
+		std::cout << "After: ";
 		printVec(pmerge.getVector());
 
 		auto startDeq = std::chrono::high_resolution_clock::now();
@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 		auto endDeq = std::chrono::high_resolution_clock::now();
 		auto durationDeq = std::chrono::duration<double, std::micro>(endDeq - startDeq);
 		
-		std::cout << "After Deq: ";
-		printDeq(pmerge.getDeque());
+		// std::cout << "After Deq: ";
+		// printDeq(pmerge.getDeque());
 
 		std::cout << "Time to process a range of " << argc - 1
 			<< " with Vector : " << std::fixed << std::setprecision(5) << durationVec.count() << " us" << std::endl;

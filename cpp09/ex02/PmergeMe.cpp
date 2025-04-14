@@ -95,13 +95,11 @@ std::vector<double> createJacobSequenceVec(int pairSize) {
 void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<int, int>> pairs)
 {
 	int pairSize = pairs.size();
-	if (pairSize < 2)
-		return;
 	
 	//create a vector of the sequence to determine the index of numbers
 	std::vector<double> jacobseq = createJacobSequenceVec(pairSize);
 	std::vector<int> vecOrder  = vec; //copy to keep original order to vec
-	
+
 	int bNum;
 	int aNum = vec[0];
 	for (const auto& p : pairs) {
@@ -111,18 +109,20 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 		}
 	}
 	vec.insert(vec.begin(), bNum); // 3 elements in the vec
-	// std::cout << "jacobseq size" << jacobseq.size() << std::endl;
+	if (pairSize < 2){
+		return;
+	}
 	for (size_t i = 1; i < jacobseq.size(); i++)
 	{
 		size_t last = jacobseq[i - 1];
 		size_t current = jacobseq[i];
 
-		for (size_t seq = current; last <= seq && seq >= 0; seq--) //> !=
+		for (size_t seq = current; last <= seq ; seq--) //> != && seq < vecOrder.size()
 		{
-			if (seq > pairs.size())
+			if (seq > pairs.size()){
 				continue;
-
-			int a = vecOrder[seq];
+			}
+			int a = vecOrder[seq - 1];
 			int b = -1;
 			for (const auto &p : pairs) {
 				if (a == p.first)
@@ -132,8 +132,9 @@ void PmergeMe::insertJacobsthalVec(std::vector<int> &vec, std::vector<std::pair<
 				}
 			}
 			auto pos = std::lower_bound(vec.begin(), vec.end(), b); //inserting b into a sorted a stack
-			if (b != -1)
+			if (b != -1 && std::find(vec.begin(), vec.end(), b) == vec.end()) // && std::find(vec.begin(), vec.end(), b) == vec.end()
 				vec.insert(pos, b);
+			
 		}
 	}
 }
@@ -147,6 +148,7 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 	if (vec.size() <= 1)
 		return ;
 	std::vector<std::pair<int, int>> pairs; //create pairs for vector
+
 	if (vec.size() % 2 != 0)
 	{
 		oddNumber = true;
@@ -158,23 +160,11 @@ void PmergeMe::sortVector(std::vector<int> &vec) {
 			std::swap(vec[i], vec[i + 1]);
 		pairs.emplace_back(vec[i], vec[i + 1]); //now a1 is bigger and placed into the vector of pairs
 	}
-	if (pairs.size() == 1) {
-		if (vec.size() < 4) {
- 			if (vec[0] > vec[1]) {
-				std::swap(vec[0], vec[1]);
-				if (oddNumber == true) {
-					vec.pop_back();
-					auto pos = std::lower_bound(vec.begin(), vec.end(), leftOver);
-					vec.insert(pos, leftOver);
-				return;
-				}
-			}
-		}
-	}
 	std::vector<int> aNum;
-	for (const auto& a1 : pairs) {
-		aNum.push_back(a1.first);
+	for (const auto& a : pairs) {
+		aNum.push_back(a.first);
 	}
+	sortVector(aNum);
 	insertJacobsthalVec(aNum, pairs);
 	if (oddNumber == true ) //check the leftover
 	{
@@ -212,8 +202,6 @@ bool PmergeMe::duplicatesDeq(std::deque<int> &deq, int num)
 void PmergeMe::insertJacobsthalDeq(std::deque<int> &deq, std::deque<std::pair<int, int>> pairs)
 {
 	int pairSize = pairs.size();
-	if (pairSize < 2)
-		return;
 	
 	//create a deque of the sequence to determine the index of numbers
 	std::deque<double> jacobseq = createJacobSequenceDeq(pairSize);
@@ -228,17 +216,20 @@ void PmergeMe::insertJacobsthalDeq(std::deque<int> &deq, std::deque<std::pair<in
 		}
 	}
 	deq.insert(deq.begin(), bNum); // 3 elements in the deq
+	if (pairSize < 2){
+		return;
+	}
 	for (size_t i = 1; i < jacobseq.size(); i++)
 	{
 		size_t last = jacobseq[i - 1];
 		size_t current = jacobseq[i];
 
-		for (size_t seq = current; last <= seq && seq >= 0; seq--) //> !=
+		for (size_t seq = current; last <= seq ; seq--) //> != && seq < deqOrder.size()
 		{
-			if (seq > pairs.size())
+			if (seq > pairs.size()){
 				continue;
-
-			int a = deqOrder[seq];
+			}
+			int a = deqOrder[seq - 1];
 			int b = -1;
 			for (const auto &p : pairs) {
 				if (a == p.first)
@@ -248,12 +239,12 @@ void PmergeMe::insertJacobsthalDeq(std::deque<int> &deq, std::deque<std::pair<in
 				}
 			}
 			auto pos = std::lower_bound(deq.begin(), deq.end(), b); //inserting b into a sorted a stack
-			if (b != -1)
+			if (b != -1 && std::find(deq.begin(), deq.end(), b) == deq.end()) // && std::find(deq.begin(), deq.end(), b) == deq.end()
 				deq.insert(pos, b);
+			
 		}
 	}
 }
-
 
 void PmergeMe::sortDeque(std::deque<int> &deq) {
 	
@@ -262,41 +253,29 @@ void PmergeMe::sortDeque(std::deque<int> &deq) {
 
 	if (deq.size() <= 1)
 		return ;
+	std::deque<std::pair<int, int>> pairs; //create pairs for Deque
 
-	std::deque<std::pair<int, int>> pairs; //create pairs for deque
 	if (deq.size() % 2 != 0)
 	{
 		oddNumber = true;
 		leftOver = deq.back();
 	}
-	for (size_t i = 0; i + 1 < deq.size(); i += 2) //push the pair into the pairs deque will need to increase the loop by 2
+	for (size_t i = 0; i + 1 < deq.size(); i += 2) //push the pair into the pairs Deque will need to increase the loop by 2
 	{
 		if (deq[i] < deq[i + 1])
 			std::swap(deq[i], deq[i + 1]);
-		pairs.emplace_back(deq[i], deq[i + 1]); //now a1 is bigger and placed into the deque of pairs
-	}
-	if (pairs.size() == 1) {
-		if (deq.size() < 4) {
- 			if (deq[0] > deq[1]) {
-				std::swap(deq[0], deq[1]);
-				if (oddNumber == true) {
-					deq.pop_back();
-					auto pos = std::lower_bound(deq.begin(), deq.end(), leftOver);
-					deq.insert(pos, leftOver);
-				return;
-				}
-			}
-		}
+		pairs.emplace_back(deq[i], deq[i + 1]); //now a1 is bigger and placed into the Deque of pairs
 	}
 	std::deque<int> aNum;
-	for (const auto& a1 : pairs) {
-		aNum.push_back(a1.first);
+	for (const auto& a : pairs) {
+		aNum.push_back(a.first);
 	}
+	sortDeque(aNum);
 	insertJacobsthalDeq(aNum, pairs);
 	if (oddNumber == true ) //check the leftover
 	{
 		auto pos = std::lower_bound(aNum.begin(), aNum.end(), leftOver);
 		aNum.insert(pos, leftOver);
 	}
-	deq = aNum; //copy the sorted deque into the main deque
+	deq = aNum; //copy the sorted vector into the main vector
 }
