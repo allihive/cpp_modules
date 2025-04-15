@@ -61,10 +61,23 @@ bool Bitcoin::isValiDate(const std::string &date)
 	tm.tm_year = yr - 1900; //tm starts at 1900
 	tm.tm_mon = mo - 1;
 	tm.tm_mday = dy;
+	tm.tm_hour = 0;
+	tm.tm_min = 0;
+	tm.tm_sec = 0;
 
-	std::time_t t = std::mktime(&tm);
-	if (t == -1)
+	std::time_t inputDate = std::mktime(&tm);
+	if (inputDate == -1)
 		return false;
+	std::time_t now = std::time(nullptr); //gets current time
+	std::tm *now_tm = std::localtime(&now);
+	now_tm->tm_hour = 0;
+	now_tm->tm_min = 0;
+	now_tm->tm_sec = 0;
+	std::time_t today = std::mktime(now_tm);
+	if (inputDate > today) {
+		std::cerr << date << " is a future date." << std::endl;
+		return false;
+	}
 	if (!checkDate(yr, mo, dy)) {
 		std::cerr << date << " date is not within our database" << std::endl;
 		return false;
