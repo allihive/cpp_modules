@@ -69,7 +69,7 @@ bool Bitcoin::isValiDate(const std::string &date)
 	if (inputDate == -1)
 		return false;
 	std::time_t now = std::time(nullptr); //gets current time
-	std::tm *now_tm = std::localtime(&now);
+	std::tm *now_tm = std::gmtime(&now);
 	now_tm->tm_hour = 0;
 	now_tm->tm_min = 0;
 	now_tm->tm_sec = 0;
