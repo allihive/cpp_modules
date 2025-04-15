@@ -60,7 +60,8 @@ bool RPN::checkStr(const std::string &str)
 
 void RPN::calculator(const std::string &str)
 {
-	bool negative;
+	if (str.empty())
+		return;
 	if (checkStr(str) == false)
 		return;
 	double result = 0;
@@ -79,13 +80,15 @@ void RPN::calculator(const std::string &str)
 			_stack.push(n);
 			}
 		}
-		else if (str[i] == '-' && isdigit(str[i + 1])){
+		else if (str[i] == '-' && i + 1 < str.length() && isdigit(str[i + 1])){
 			negative = true;
 			continue;
 		}
 		else if (str[i] == ' ')
 		 	continue;
 		else {
+			if (_stack.size() < 2)
+				return;
 			double first = _stack.top();
 			_stack.pop();
 			double second = _stack.top();

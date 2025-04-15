@@ -12,6 +12,7 @@ class RPN {
 		~RPN();
 		RPN(const RPN& other);
 		RPN& operator=(const RPN &other);
+		bool negative = false;
 
 		void calculator(const std::string& );
 		bool checkStr(const std::string &);
