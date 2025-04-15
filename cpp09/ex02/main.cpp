@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 			if (pmerge.convertNumbersDeq(argv[i]) == false)
 				return 1;
 		}
-		std::cout << "Before: ";
-		printDeq(pmerge.getDeque());
+		// std::cout << "Before: ";
+		// printDeq(pmerge.getDeque());
 		pmerge.sortDeque(pmerge.getDeque());
 		auto endDeq = std::chrono::high_resolution_clock::now();
 		auto durationDeq = std::chrono::duration<double, std::micro>(endDeq - startDeq);
